@@ -1,0 +1,44 @@
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" [routerLink]="['/admin-profile-setting']">
+    <p>ตั้งค่าบัญชี</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-create-account-admin']">
+    <p>สร้างบัญชีแอดมิน</p>
+  </div>
+  <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/admin-account-admin-list']">
+    <p>บัญชีแอดมิน</p>
+  </div>
+  <div class="col-auto pl-top-menu-sm router" [routerLink]="['/admin-approve-account-access']">
+    <p>อนุมัติการเข้าใช้ระบบ</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-forgot-password']">
+    <p>ลืมรหัสผ่าน</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-money-setting']">
+    <p>ค่าเงิน</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
+
+<!-- CONTENT -->
+<div class="row">
+  <!-- LIST 1 -->
+  <div class="col-12 mt-3 router" [routerLink]="['/admin-account-admin-detail']">
+    <div class="card-border-3 bg-white">
+      <div class="row row-sm_">
+        <div class="col col-sm_ align-self-center">
+          <p class="mb-0 text-dark">ชื่อผู้ใช้งาน : PattanapanK</p>
+          <p class="mb-0 text-dark">รหัสผ่าน : B456E64O6PD67BF55O</p>
+          <p class="mb-0 text-dark">ชื่อ : Pattanapan</p>
+          <p class="mb-0 text-dark">นามสกุล : Khunthai</p>
+          <p class="mb-0 text-dark">ตำแหน่งงาน : แอดมิน</p>
+          <p class="mb-0 text-dark">สร้างวันที่ : 17/04/2020 14:00</p>
+        </div>
+        <div class="col-auto col-sm_ align-self-center">
+          <button type="button" class="btn btn-dark" style="border-radius: 1.5rem;">คัดลอก</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<!-- <div class="pl-2 pr-2">  -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/vdo-add']">
+      <p>สร้างวิดีโอ</p>
+    </div>
+    <div class="col-auto router" [routerLink]="['/vdo-online-list']">
+      <p>วิดีโอที่ออนไลน์</p>
+    </div>
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/vdo-history-list']">
+      <p>ประวัติวิดีโอ</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  
+  <!--  -->
+  <div class="row">
+    <div class="col pr-0">
+      <input type="text" class="form-control" style="border-radius: 50px;" placeholder="ค้นหาชื่อวิดีโอหรือรหัสวิดีโอ">
+    </div>
+    <div class="col-auto">
+      <button type="button" class="btn text-placeholder text-center btn-copy">ค้นหา</button>
+    </div>
+  </div>
+  <!--  -->
+  <div class="row">
+    <!-- LIST 1 -->
+    <div class="col-12 mt-3 router" [routerLink]="['/vdo-history-detail']">
+      <div class="card-border-3 bg-white">
+        <div class="row row-sm_">
+          <div class="col-auto col-sm_ align-self-center">
+            <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/_app.png">
+          </div>
+          <div class="col col-sm_ align-self-center">
+            <p class="mb-0 text-dark">ชื่อวิดีโอ : a</p>
+            <p class="mb-0 text-dark">รหัสวิดีโอ : D679F8G4B800NK</p>
+            <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- LIST 2 -->
+    <div class="col-12 mt-3 router" [routerLink]="['/vdo-history-detail']">
+      <div class="card-border-3 bg-white">
+        <div class="row row-sm_">
+          <div class="col-auto col-sm_ align-self-center">
+            <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/_app.png">
+          </div>
+          <div class="col col-sm_ align-self-center">
+            <p class="mb-0 text-dark">ชื่อวิดีโอ : a</p>
+            <p class="mb-0 text-dark">รหัสวิดีโอ : D679F8G4B800NK</p>
+            <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->

@@ -1,0 +1,214 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/banner-online-list']">
+      <p>Online</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/banner-calendar']">
+      <p>ช่วงเวลาว่าง</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/banner-setting']">
+      <p>ตั้งค่าแบนเนอร์</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <div *ngIf="settingForm" class="card-border-3 bg-white mt-2 mb-2">
+    <!-- TOP MENU -->
+    <div class="row row-top-menu">
+      <div class="col-6 col-md-6 col-lg-3 col-top-menu">
+        <div class="dropdown" style="cursor: pointer;">
+          <div class="input-style mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p class="mb-0 text-input">สถานะ</p>
+            <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">{{ placeholderBannerType }}</p>
+          </div>
+          <div class="dropdown-menu scrollable-menu w-100">
+            <a (click)="selectBannerType('แอพพลิเคชั่น')" class="dropdown-item">แอพพลิเคชั่น</a>
+            <a (click)="selectBannerType('แบนเนอร์เว็บไซต์')" class="dropdown-item">แบนเนอร์เว็บไซต์</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-6 col-lg-3 col-top-menu">
+        <div class="dropdown" style="cursor: pointer;">
+          <div class="input-style mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p class="mb-0 text-input">หน้า</p>
+            <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">{{ placeholderPage }}</p>
+          </div>
+          <div class="dropdown-menu scrollable-menu w-100">
+            <a (click)="selectPage('1')" class="dropdown-item">1</a>
+            <a (click)="selectPage('2')" class="dropdown-item">2</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-6 col-lg-3 col-top-menu">
+        <div class="dropdown" style="cursor: pointer;">
+          <div class="input-style mt-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p class="mb-0 text-input">ตำแหน่ง</p>
+            <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">{{ placeholderPosition }}</p>
+          </div>
+          <div class="dropdown-menu scrollable-menu w-100">
+            <a (click)="selectPosition('[1/1]')" class="dropdown-item">[1/1]</a>
+            <a (click)="selectPosition('[1/2]')" class="dropdown-item">[1/2]</a>
+            <a (click)="selectPosition('[1/3]')" class="dropdown-item">[1/3]</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-6 col-md-6 col-lg-3 col-top-menu" style="cursor: pointer;">
+        <form class="form-inline align-items-start">
+          <div class="form-group hidden">
+            <div class="input-group">
+              <input name="datepicker"
+                     class="form-control border-0"
+                     ngbDatepicker
+                     #datepicker="ngbDatepicker"
+                     [autoClose]="'outside'"
+                     (dateSelect)="onDateSelection($event)"
+                     [displayMonths]="1"
+                     [dayTemplate]="t"
+                     outsideDays="hidden"
+                     [startDate]="fromDate!"
+                     tabindex="-1">
+              <ng-template #t let-date let-focused="focused">
+                <span class="custom-day"
+                      [class.focused]="focused"
+                      [class.range]="isRange(date)"
+                      [class.faded]="isHovered(date) || isInside(date)"
+                      (mouseenter)="hoveredDate = date"
+                      (mouseleave)="hoveredDate = null">
+                  {{ date.day }}
+                </span>
+              </ng-template>
+            </div>
+          </div>
+          <div class="form-group w-100">
+            <div class="input-group w-100">
+              <div class="input-style mt-2 w-100" (click)="datepicker.toggle()">
+                <p class="mb-0 text-input">ช่วงเวลา</p>
+                <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">{{ dateString }}</p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- TOP MENU -->
+    <p class="mt-2 mb-0">หมายเหตุ</p>
+    <p class="mb-0 productDataText">• ช่วงเวลาเริ่มต้นตั้งแต่เวลา 00:01 ของวันที่เริ่มต้นและสิ้นสุดเวลา 00:00 ของวันที่สิ้นสุด</p>
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">ชื่อแบนเนอร์* (0/40)</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #bannerName placeholder="ข้อความ">
+    </div>
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">ชื่อลูกค้า* (0/40)</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #bannerName placeholder="ข้อความ">
+    </div>
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">Link เนื้อหา*</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #bannerName placeholder="ข้อความ">
+    </div>
+    <div class="row mt-4">
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0">panner-img.png</p>
+      </div>
+      <div class="col align-self-center">
+        <button type="button" class="btn text-placeholder text-center btn-up">อัพรูปภาพแบนเนอร์</button>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <div class="mt-4">
+      <button type="button" class="btn text-placeholder text-center btn-r-color" (click)="buttonNext()">ถัดไป</button>
+    </div>
+  </div>
+
+  <div *ngIf="concludeForm" class="card-border-3 bg-white mt-2 mb-2">
+    <p class="mb-0">สรุปข้อมูลแบนเนอร์</p>
+    <p class="mb-0 productDataText">• แบนเนอร์เว็บไซต์</p>
+    <p class="mb-0 productDataText">• หน้า 1</p>
+    <p class="mb-0 productDataText">• ตำแหน่ง [3/2]</p>
+    <p class="mb-0 productDataText">• วันที่เริ่มต้น 01/04/2020 (00.01) • วันที่สิ้นสุด 31/04/2020 (00:00)</p>
+    <p class="mb-0 productDataText">• ชื่อแบนเนอร์ : แบนเนอร์ 001</p>
+    <p class="mb-0 productDataText">• ชื่อลูกค้า : บริษัท เจริญทรัพย์ จำกัด</p>
+    <p class="mb-0 productDataText">• Link : www.abidmore.com/shop/D5S88FG45B11</p>
+    <!-- BANNER SHOW EX -->
+    <div class="row mt-4" style="margin-left: -4px; margin-right: -4px;">
+      <div class="col" style="padding-left: 4px; padding-right: 4px;">
+        <div class="router" [routerLink]="['/banner-online-detail']">
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="./assets/img/banner/banner-black.png">
+            <div class="card-img-overlay overlay-cover text-center d-flex flex-column justify-content-center"
+              style="background-color: rgba(0, 0, 0, .5);">
+              <div class="align-self-center">
+                <p class="mb-0 text-white carousel-item-text">[3/1]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="padding-left: 4px; padding-right: 4px;">
+        <div class="router" [routerLink]="['/banner-online-detail']">
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="./assets/img/banner/banner2.png">
+            <div class="card-img-overlay overlay-cover text-center d-flex flex-column justify-content-center"
+              style="background-color: rgba(0, 0, 0, .5);">
+              <div class="align-self-center">
+                <p class="mb-0 text-white carousel-item-text">[3/2]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col" style="padding-left: 4px; padding-right: 4px;">
+        <div class="router" [routerLink]="['/banner-online-detail']">
+          <div class="card bg-dark text-white">
+            <img class="card-img" src="./assets/img/banner/banner-black.png">
+            <div class="card-img-overlay overlay-cover text-center d-flex flex-column justify-content-center"
+              style="background-color: rgba(0, 0, 0, .5);">
+              <div class="align-self-center">
+                <p class="mb-0 text-white carousel-item-text">[3/3]</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <!-- <div class="mt-4">
+      <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+      data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+    </div> -->
+    <div class="row row-sm_ mt-4">
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-l-black" (click)="buttonBack()">ย้อนกลับ</button>
+      </div>
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+        data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  </div>
+
+<!-- </div> -->
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการสร้างแบนเนอร์ใหม่ ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/banner-online-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

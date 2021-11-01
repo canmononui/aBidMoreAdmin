@@ -1,0 +1,192 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/member-statistics-chart']">
+      <p>สถิติ</p>
+    </div>
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/member-settime']">
+      <p>ตั้งค่าเวลา</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <!--  -->
+    <div class="row">
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 font-weight-bold">ตั้งค่าช่วงเวลาการเข้าชมร้าน</p>
+      </div>
+      <div class="col align-self-center">
+        <button type="button" class="btn text-placeholder text-center btn-edit" (click)="buttonEdit()">แก้ไข</button>
+      </div>
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">เรียงลำดับจากจำนวนผู้ใช้งานมากที่สุดไปน้อยที่สุด</p>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 1</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">00:01-03.00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 2</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">03:01-06:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 3</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">06:01-09:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 4</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">09:01-12:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 5</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">12:01-15:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 6</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">15:01-18:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 7</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">18:01-21:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!--  -->
+    <div class="dropdown mt-2" style="cursor: pointer;" [class.disabled]="!focusEdit">
+      <div class="input-style" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <p class="mb-0 text-input">ช่วงเวลา 8</p>
+        <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">21:01-00:00</p>
+      </div>
+      <div class="dropdown-menu scrollable-menu w-100">
+        <a class="dropdown-item">00:01-03.00</a>
+        <a class="dropdown-item">03:01-06:00</a>
+        <a class="dropdown-item">06:01-09:00</a>
+        <a class="dropdown-item">09:01-12:00</a>
+        <a class="dropdown-item">12:01-15:00</a>
+        <a class="dropdown-item">15:01-18:00</a>
+        <a class="dropdown-item">18:01-21:00</a>
+        <a class="dropdown-item">21:01-00:00</a>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <div *ngIf="focusEdit" class="mt-4">
+      <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+      data-backdrop="static" data-keyboard="false">บันทึกการเปลี่ยนแปลง</button>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP SAVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ยืนยันการเปลี่ยนแปลง ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" (click)="buttonSave()">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP SAVE -->

@@ -1,0 +1,79 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/member-statistics-chart']">
+      <p>สถิติ</p>
+    </div>
+    <div class="col-auto pl-0 router" [routerLink]="['/member-settime']">
+      <p>ตั้งค่าเวลา</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <form class="form-inline">
+    <div class="form-group hidden">
+      <div class="input-group">
+        <input name="datepicker" class="form-control border-0" ngbDatepicker #datepicker="ngbDatepicker"
+          [autoClose]="'outside'" (dateSelect)="onDateSelection($event)" [displayMonths]="1" [dayTemplate]="t"
+          outsideDays="hidden" [startDate]="fromDate!" tabindex="-1">
+        <ng-template #t let-date let-focused="focused">
+          <span class="custom-day" [class.focused]="focused" [class.range]="isRange(date)"
+            [class.faded]="isHovered(date) || isInside(date)" (mouseenter)="hoveredDate = date"
+            (mouseleave)="hoveredDate = null">
+            {{ date.day }}
+          </span>
+        </ng-template>
+      </div>
+    </div>
+    <div class="form-group w-100">
+      <div class="input-group w-100">
+        <div class="input-style mt-2 w-100" (click)="datepicker.toggle()">
+          <p class="mb-0 text-input">ช่วงเวลา</p>
+          <p class="mt-2 mb-2 text-placeholder" style="color: #616a71;">{{ dateString }}</p>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- CONTENT -->
+  <!-- <div class="card-border-3 bg-white mt-2 mb-2">
+    <p class="mt-2 mb-0">วันที่สมัคร</p>
+    <p class="mb-0 productDataText">• 17/04/2020</p>
+  </div> -->
+  <!-- CONTENT 1 -->
+  <div class="card-border-3 bg-white mt-2">
+    <div class="row">
+      <div class="col">
+        <p class="mb-0">เพศของผู้รับชมร้านค้า</p>
+      </div>
+      <div class="col-auto text-right">
+        <button type="button" class="btn btn-dark" style="border-radius: 1.5rem;">บันทึก</button>
+      </div>
+    </div>
+    <canvas id="sexBarChart"></canvas>
+  </div>
+  <!-- CONTENT 2 -->
+  <div class="card-border-3 bg-white mt-2">
+    <div class="row">
+      <div class="col">
+        <p class="mb-0">ช่วงอายุของผู้รับชมร้านค้า</p>
+      </div>
+      <div class="col-auto text-right">
+        <button type="button" class="btn btn-dark" style="border-radius: 1.5rem;">บันทึก</button>
+      </div>
+    </div>
+    <canvas id="ageBarChart"></canvas>
+  </div>
+  <!-- CONTENT 3 -->
+  <div class="card-border-3 bg-white mt-2">
+    <div class="row">
+      <div class="col">
+        <p class="mb-0">ช่วงเวลาการเข้าชมร้าน</p>
+      </div>
+      <div class="col-auto text-right">
+        <button type="button" class="btn btn-dark" style="border-radius: 1.5rem;">บันทึก</button>
+      </div>
+    </div>
+    <canvas id="timeBarChart"></canvas>
+  </div>
+<!-- </div> -->

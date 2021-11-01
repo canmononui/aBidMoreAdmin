@@ -1,0 +1,103 @@
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" [routerLink]="['/admin-profile-setting']">
+    <p>ตั้งค่าบัญชี</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-create-account-admin']">
+    <p>สร้างบัญชีแอดมิน</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-account-admin-list']">
+    <p>บัญชีแอดมิน</p>
+  </div>
+  <div class="col-auto pl-top-menu-sm router" style="color: #FFA101;" [routerLink]="['/admin-approve-account-access']">
+    <p>อนุมัติการเข้าใช้ระบบ</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-forgot-password']">
+    <p>ลืมรหัสผ่าน</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/admin-money-setting']">
+    <p>ค่าเงิน</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
+
+<!-- CONTENT -->
+<div class="row">
+  <!-- LIST 1 -->
+  <div class="col-12 mt-3">
+    <div class="card-border-3 bg-white">
+      <div class="row row-sm_">
+        <div class="col-12 col-md col-lg col-sm_ align-self-center">
+          <p class="mb-0 text-dark">ชื่อผู้ใช้งาน : PattanapanK</p>
+          <p class="mb-0 text-dark">รหัสผ่าน : B456E64O6PD67BF55O</p>
+          <p class="mb-0 text-dark">ชื่อ : Pattanapan</p>
+          <p class="mb-0 text-dark">นามสกุล : Khunthai</p>
+          <p class="mb-0 text-dark">ตำแหน่งงาน : แอดมิน</p>
+          <p class="mb-0 text-dark">รหัสเครื่อง : ID2F546G90KIP988ER</p>
+          <p class="mb-0 text-dark">สร้างวันที่ : 17/04/2020 14:00</p>
+        </div>
+        <div class="col-12 col-md-auto col-lg-auto col-sm_ align-self-center text-center btn-mt">
+          <div class="row">
+            <div class="col-6 col-md-12 col-lg-12">
+              <button type="button" class="btn text-white w-100" style="border-radius: 1.5rem; background-color: #D9534F;"
+              data-toggle="modal" data-target="#ModalPopupNotApprove" data-backdrop="static" data-keyboard="false">ไม่อนุมัติ</button>
+            </div>
+            <div class="col-6 col-md-12 col-lg-12">
+              <button type="button" class="btn text-white btn-mt-pprove w-100" style="border-radius: 1.5rem; background-color: #5CB85C;"
+              data-toggle="modal" data-target="#ModalPopupApprove" data-backdrop="static" data-keyboard="false">อนุมัติ</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupNotApprove" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ไม่อนุมัติการเข้าใช้ระบบ</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->
+
+<!-- MODAL POPUP APPROVE -->
+<div class="modal fade" id="ModalPopupApprove" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการอนุมัติการเข้าใช้ระบบ ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP APPROVE -->

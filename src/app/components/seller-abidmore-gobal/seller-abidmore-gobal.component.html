@@ -1,0 +1,105 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/seller-account-approve-list']">
+      <p>อนุมัติร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-bank-approve-list']">
+      <p>อนุมัติบัญชีร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-search-list']">
+      <p>ข้อมูลร้านค้า</p>
+    </div>
+    <div class="col-auto pl-top-menu-sm router" [routerLink]="['/seller-report-list']">
+      <p>แจ้งปัญหา</p>
+    </div>
+    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/seller-abidmore-gobal']">
+      <p>aBidMore Gobal</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <button type="button" class="btn text-placeholder text-center btn-green" data-toggle="modal" data-target="#ModalPopupAddShop"
+    data-backdrop="static" data-keyboard="false">เพิ่มรายชื่อร้านเข้าร่วม aBidMore Gobal</button>
+    <!-- BANK CARD -->
+    <div class="row mt-2">
+      <div class="col-12">
+        <div class="bank-card">
+          <p class="mb-0">ค่าเงิน</p>
+          <div class="row container">
+            <div class="col-12 col-md-6 col-lg-6">
+              <p class="mb-0">1.00 ดอลลาร์ - 129.12 จัต (พม่า)</p>
+              <p class="mb-0">1.00 ดอลลาร์ - 129.12 เรียล (กัมพูชา)</p>
+              <p class="mb-0">1.00 ดอลลาร์ - 44.00 บาท (ไทย)</p>
+              <p class="mb-0">1.00 ดอลลาร์ - 281.62 กีบ (ลาว)</p>
+              <p class="mb-0">1.00 ดอลลาร์ - 0.14 ริงกิต (มาเลเซีย)</p>
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 mt-sm_">
+              <p class="mb-0">129.12 จัต (พม่า) - 1.00 ดอลลาร์</p>
+              <p class="mb-0">129.12 เรียล (กัมพูชา) - 1.00 ดอลลาร์</p>
+              <p class="mb-0">44.00 บาท (ไทย) - 1.00 ดอลลาร์</p>
+              <p class="mb-0">281.62 กีบ (ลาว) - 1.00 ดอลลาร์</p>
+              <p class="mb-0">0.14 ริงกิต (มาเลเซีย) - 1.00 ดอลลาร์</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- TEXT -->
+    <div class="mt-2">
+      <a class="mb-0 text-dark">เงื่อไขสัญญา</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+    <div class="mt-2">
+      <a class="mb-0 text-dark">กฎหมายประเทศพม่า</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+    <div class="mt-2">
+      <a class="mb-0 text-dark">กฎหมายประเทศกัมพูชา</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+    <div class="mt-2">
+      <a class="mb-0 text-dark">กฎหมายประเทศไทย</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+    <div class="mt-2">
+      <a class="mb-0 text-dark">กฎหมายประเทศลาว</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+    <div class="mt-2">
+      <a class="mb-0 text-dark">กฎหมายประเทศมาเลเซีย</a>
+      <a class="mb-0 pl-2 text-dark"><u>แสดง</u></a>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP ADD SHOP ABIDMORE GOBAL -->
+<div class="modal fade" id="ModalPopupAddShop" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <div class="input-style">
+        <p class="mb-0 text-input">กรุณาเพิ่มรหัสร้านค้า</p>
+        <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
+        style="box-shadow: none; background-color: #F2F6FA;" #shopKey_
+        placeholder="รหัสร้านค้า (สูงสุด 200 ร้าน คั่นด้วยเครื่องหมาย ',')"></textarea>
+      </div>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP ADD SHOP ABIDMORE GOBAL -->

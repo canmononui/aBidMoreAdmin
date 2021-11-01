@@ -1,0 +1,99 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/vdo-add']">
+      <p>สร้างวิดีโอ</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/vdo-online-list']">
+      <p>วิดีโอที่ออนไลน์</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/vdo-history-list']">
+      <p>ประวัติวิดีโอ</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  <!--  -->
+  <div class="input-style mt-2">
+    <p class="mb-0 text-input">ชื่อวิดีโอ</p>
+    <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #vdoName_ placeholder="ข้อความ">
+  </div>
+  <!--  -->
+  <div class="input-style mt-2">
+    <p class="mb-0 text-input">จำกัดจำนวนแสดง/วัน</p>
+    <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #vdoName_ placeholder="ตัวเลข">
+  </div>
+  <!--  -->
+  <div class="input-style mt-2">
+    <p class="mb-0 text-input">การข้ามวิดีโอ</p>
+    <!-- <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #vdoName_ placeholder="ข้อความ"> -->
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" 
+      (click)="vdoSkip('no')" checked>
+      <label class="custom-control-label" style="color: #616a71;" for="customRadioInline1">ไม่ (ต้องรับชมจนจบวิดีโอ)</label>
+    </div>
+    <div class="custom-control custom-radio custom-control-inline">
+      <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" (click)="vdoSkip('yes')">
+      <label class="custom-control-label" style="color: #616a71;" for="customRadioInline2">ใช่</label>
+      <!--  -->
+      <div class="dropdown pl-2" [class.disabled]="!vdoSkipType">
+        <button class="btn dropdown-toggle" style="background-color: #F2F6FA; border: 1px solid #000; border-radius: 50px;" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          ตัวเลือกวินาที
+        </button>
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+          <a class="dropdown-item">5 วินาที</a>
+          <a class="dropdown-item">10 วินาที</a>
+          <a class="dropdown-item">15 วินาที</a>
+          <a class="dropdown-item">20 วินาที</a>
+          <a class="dropdown-item">25 วินาที</a>
+          <a class="dropdown-item">30 วินาที</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!--  -->
+  <div class="row mt-4">
+    <div class="col-auto pr-0 align-self-center">
+      <p class="mb-0">thumbnail.jpg</p>
+    </div>
+    <div class="col align-self-center">
+      <button type="button" class="btn text-placeholder text-center btn-up">อัพโหลดภาพปก (jpg, png)</button>
+    </div>
+  </div>
+  <!--  -->
+  <div class="row mt-4">
+    <div class="col-auto pr-0 align-self-center">
+      <p class="mb-0">อัพวิดีโอสะสมเหรียญ.mp4</p>
+    </div>
+    <div class="col align-self-center">
+      <button type="button" class="btn text-placeholder text-center btn-up">อัพโหลดวิดีโอ (mp4)</button>
+    </div>
+  </div>
+  <!-- BUTTON -->
+  <button type="button" class="btn mt-2 text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+    data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+<!-- </div> -->
+
+
+<!-- MODAL POPUP SAVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ยืนยันการเปลี่ยนแปลง ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP SAVE -->

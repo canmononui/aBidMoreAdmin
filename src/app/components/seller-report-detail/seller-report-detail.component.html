@@ -1,0 +1,139 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/seller-account-approve-list']">
+      <p>อนุมัติร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-bank-approve-list']">
+      <p>อนุมัติบัญชีร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-search-list']">
+      <p>ข้อมูลร้านค้า</p>
+    </div>
+    <div class="col-auto pl-top-menu-sm router" style="color: #FFA101;" [routerLink]="['/seller-report-list']">
+      <p>แจ้งปัญหา</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-abidmore-gobal']">
+      <p>aBidMore Gobal</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <!--  -->
+    <div class="row row-sm_">
+      <div class="col-auto col-sm_ align-self-center">
+        <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
+      </div>
+      <div class="col col-sm_ align-self-center">
+        <p class="mb-0 text-dark">HappyShop</p>
+        <p class="mb-0 text-dark">รหัสร้านค้า : D679F8G4B800NK</p>
+        <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
+      </div>
+    </div>
+    <!--  -->
+    <div class="card-border-3 bg-white mt-2">
+      <div class="row row-sm_">
+        <div class="col-auto col-sm_ align-self-center">
+          <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/business-girl-1.png">
+        </div>
+        <div class="col col-sm_ align-self-center">
+          <p class="mb-0 text-dark">USER NAME</p>
+          <ul class="rating-stars">
+            <li>
+              <i class="fa fa-star" style="color: #FFA101;"></i>
+              <i class="fa fa-star" style="color: #FFA101;"></i>
+              <i class="fa fa-star" style="color: #FFA101;"></i>
+              <i class="fa fa-star-o" style="color: #FFA101;"></i>
+              <i class="fa fa-star-o" style="color: #FFA101;"></i>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!-- <div class="mt-2" style="padding: 16px; background-color: #F2F6FA; border-radius: 10px;">
+        dfhg
+      </div> -->
+      <!-- PRODUCT DETAIL -->
+      <div class="container-bg-color mt-2">
+        <div class="row m-0">
+          <div class="col-auto p-0">
+            <img src="./assets/img/bag.png" class="img-fluid border-radius-10" width="80 px">
+          </div>
+          <div class="col-auto pl-2">
+            <p class="mb-0">Adidas NMD</p>
+            <p class="mb-0">รองเท้า NMD 360 ผสมรองเท้า NMD...</p>
+            <p class="mb-0">• F34G7gk5Hj2io8p9</p>
+            <p class="mb-0 productDataText">รหัสสินค้า</p>
+          </div>
+        </div>
+      </div>
+      <p class="mt-2 mb-0">สินค้าตรงตามรูป รายละเอียดครบสอบถามข้อความทางร้านร้านตอบดีมากให้รายละเอียดครบถ้วน แพคส่งสินค้า
+        กันกระแทกดีสุดๆ มีเก็บเงินปลายทางด้วยโหวตให้เลย</p>
+    </div>
+    <!-- BUTTON -->
+    <div class="row row-sm_ mt-4">
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal" data-target="#ModalPopupNotApprove"
+        data-backdrop="static" data-keyboard="false">ไม่อนุมัติการลบความคิดเห็น</button>
+      </div>
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupApprove"
+        data-backdrop="static" data-keyboard="false">อนุมัติการลบความคิดเห็น</button>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupNotApprove" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <div class="input-style">
+        <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการไม่อนุมัติการลบความคิดเห็น</p>
+        <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
+        style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+        placeholder="เหตุผลการไม่อนุมัติการลบความคิดเห็น"></textarea>
+      </div>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/seller-report-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupApprove" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการอนุมัติการลบความคิดเห็น ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/seller-report-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

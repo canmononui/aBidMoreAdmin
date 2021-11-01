@@ -1,0 +1,144 @@
+.card-border-3 {
+  border: 3px solid #E7EDF4; 
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.productDataText {
+  color: #8E8D8D;
+}
+
+.btn-copy {
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #D9534F; 
+  border: 1px solid #D9534F; 
+  background-color: #FFF;
+}
+
+.img {
+  width: 50%;
+}
+
+.btn-green {
+  width: 100%; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  border: 1px solid #5CB85C; 
+  background-color: #5CB85C;
+}
+
+.btn-l-black {
+  width: 100%; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  border: 1px solid #373E48; 
+  background-color: #373E48;
+}
+
+.btn-r-color {
+  width: 100%; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  /* border: 1px solid #D9534F; 
+  background-color: #FE5721; */
+  border: 1px solid #5CB85C;
+  background-color: #5CB85C;
+}
+
+.pl-top-menu-sm {
+  padding-left: 4px;
+}
+
+.rating-stars {
+  display: inline-block;
+  vertical-align: middle;
+  margin: 0;
+  padding: 0;
+}
+
+.rating-stars li {
+  display: block;
+  text-overflow: clip;
+  white-space: nowrap;
+  z-index: 1;
+}
+
+.container-bg-color {
+  background-color: #F2F6FA; 
+  border-radius: 10px; 
+  padding: 20px;
+  /* margin-bottom: 20px; */
+}
+
+.bank-card {
+  color: #FFF;
+  background-color: #373E48;
+  padding: 24px 24px 24px 24px; 
+  border-radius: 10px;
+}
+
+.input-style {
+  padding: 16px 16px 16px 24px; 
+  border-radius: 10px; 
+  background-color: #F2F6FA;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (max-width: 480px) {
+  .container-bg-color {
+    border-radius: 0px; 
+    padding: 10px;
+    /* margin-bottom: 0px; */
+  }
+
+  .card-border-3 {
+    border: 1.5px solid #E7EDF4;
+    border-radius: 15px;
+    padding: 8px;
+  }
+
+  .img {
+    width: 70%;
+  }
+
+  .row-sm_ {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+  .col-sm_ {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  .pl-top-menu-sm {
+    padding-left: 16px;
+  }
+
+  .bank-card {
+    padding: 16px 16px 16px 24px; 
+    border-radius: 10px;
+  }
+
+  .mt-sm_ {
+    margin-top: 15px;
+  }
+  
+  .input-style {
+    padding: 10px 10px 10px 15px; 
+    border-radius: 0px;
+  }
+
+  .text-input {
+    font-size: 0.8rem;
+  }
+
+  .text-placeholder {
+    font-size: 0.7rem;
+  }
+
+}

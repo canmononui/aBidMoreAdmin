@@ -1,0 +1,91 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/vdo-add']">
+      <p>สร้างวิดีโอ</p>
+    </div>
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/vdo-online-list']">
+      <p>วิดีโอที่ออนไลน์</p>
+    </div>
+    <div class="col-auto router" [routerLink]="['/vdo-history-list']">
+      <p>ประวัติวิดีโอ</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <!--  -->
+    <p class="mt-2 mb-0">ข้อมูลวิดีโอ</p>
+    <p class="mb-0 productDataText">• ชื่อวิดีโอ : a</p>
+    <p class="mb-0 productDataText">• รหัสวิดีโอ : D679F8G4B800NK</p>
+    <p class="mb-0 productDataText">• วันที่สร้าง : 17/04/2020</p>
+    <p class="mb-0 productDataText">• จำกัดจำนวนแสดง/วัน : 100 ครั้ง/วัน</p>
+    <p class="mb-0 productDataText">• การข้ามวิดีโอ : ไม่ (ต้องรับชมจนจบวิดีโอ)</p>
+    <p class="mb-0 productDataText">• วิดีโอ : <u>อัพวิดีโอสะสมเหรียญ.mp4</u></p>
+    <!--  -->
+    <p class="mt-2 mb-0">ยอดการรับชม</p>
+    <p class="mb-0 productDataText">• 2020-04-01 - 2020-04-30 : 68 ครั้ง</p>
+    <p class="mb-0 productDataText">• 2020-05-01 - 2020-05-31 : 72 ครั้ง</p>
+    <p class="mb-0 productDataText">• 2020-06-01 - 2020-06-23 : 65 ครั้ง</p>
+    <!-- BUTTON -->
+    <div class="row row-sm_ mt-4">
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal" data-target="#ModalPopupEdit"
+        data-backdrop="static" data-keyboard="false">แก้ไขวิดีโอ</button>
+      </div>
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupCancel"
+        data-backdrop="static" data-keyboard="false">ยกเลิกการทำงาน</button>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupEdit" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการแก้ไขวิดีโอ ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/vdo-add']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupCancel" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการยกเลิกการทำงานวิดีโอนี้ ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/vdo-online-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

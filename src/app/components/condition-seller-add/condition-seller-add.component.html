@@ -1,0 +1,66 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/condition-seller-list']">
+      <p>รายละเอียดเงื่อนไข</p>
+    </div>
+    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/condition-seller-add']">
+      <p>เงื่อนไขใหม่</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  
+    <!-- CONTENT -->
+    <div class="mb-2">
+      <!--  -->
+      <div class="input-style mt-2">
+        <p class="mb-0 text-input">ข้อความเงื่อนไข*</p>
+        <ejs-richtexteditor id='defaultRTE' #fromRTE [(value)]='value' [toolbarSettings]='tools'
+          [quickToolbarSettings]='quickTools'></ejs-richtexteditor>
+      </div>
+      <!--  -->
+      <div class="input-style mt-2">
+        <p class="mb-0 text-input">หมายเหตุ*</p>
+        <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #reason_ placeholder="โปรดเพิ่มหมายเหตุหรือคำอธิบายข้อมูลที่แก้ไข">
+      </div>
+      <!--  -->
+      <div class="row mt-2">
+        <div class="col-auto pr-0 align-self-center">
+          <p class="mb-0">Seller-condition-4.pdf</p>
+        </div>
+        <div class="col align-self-center">
+          <button type="button" class="btn text-placeholder text-center btn-up">อัพรูปไฟล์เงื่อนไข</button>
+        </div>
+      </div>
+      <!-- BUTTON -->
+      <div class="mt-2">
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+        data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+      </div>
+    </div>
+  <!-- </div> -->
+
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการสร้างเงื่อนไขฉบับใหม่ ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/condition-seller-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

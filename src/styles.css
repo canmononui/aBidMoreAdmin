@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+  font-family: 'Kanit', sans-serif;
+  /* height:100%; */
+ }
+
+.body-color {
+  background-color: #F5F5F5;
+}
+
+.router {
+  cursor: pointer; 
+  outline: 0;
+}

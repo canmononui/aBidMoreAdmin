@@ -1,0 +1,289 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/notification-add']">
+      <p>สร้างแจ้งเตือน</p>
+    </div>
+    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/notification-edit-list']">
+      <p>แก้ไขแจ้งเตือน</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/notification-history-list']">
+      <p>ประวัติแจ้งเตือน</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  
+  <!-- CONTENT -->
+  <div class="mb-2">
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">หัวข้อ* (0/30)*</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #reason_ placeholder="ข้อความนี้จะแสดงในหัวข้อของ Notification">
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">รูปภาพ</p>
+    <div class="row row-img-m" style="margin-top: -8px;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
+        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/bag.png" class="img-fluid" style="cursor: pointer; border-radius: 10px;">
+      </div>
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
+        <button type="button" class="btn text-placeholder text-center btn-up">อัพรูปแจ้งเตือน</button>
+      </div>
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">ข้อความเงื่อนไข*</p>
+      <ejs-richtexteditor id='defaultRTE' #fromRTE [(value)]='value' [toolbarSettings]='tools'
+        [quickToolbarSettings]='quickTools'></ejs-richtexteditor>
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">หมายเหตุ*</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #reason_ placeholder="โปรดเพิ่มหมายเหตุหรือคำอธิบายข้อมูลที่แก้ไข">
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mt-2 mb-0 text-input">กลุ่มเป้าหมาย*</p>
+      <div class="row mt-1">
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="male">
+            <label class="custom-control-label" for="male">ชาย</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="female">
+            <label class="custom-control-label" for="female">หญิง</label>
+          </div>
+        </div>
+      </div>
+      <!--  -->
+      <p class="mt-4 mb-0 text-input">ช่วงอายุ*</p>
+      <div class="row mt-1">
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="lower13">
+            <label class="custom-control-label" for="lower13">ต่ำกว่า 13 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="13_17">
+            <label class="custom-control-label" for="13_17">13-17 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="18_24">
+            <label class="custom-control-label" for="18_24">18-24 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="25_34">
+            <label class="custom-control-label" for="25_34">25-34 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="35_44">
+            <label class="custom-control-label" for="35_44">35-44 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="45_54">
+            <label class="custom-control-label" for="45_54">45-54 ปี</label>
+          </div>
+        </div>
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="up65">
+            <label class="custom-control-label" for="up65">65+ ปี</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-2 text-input">วันที่แจ้ง Notification*</p>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline1" name="customRadioInline1" class="custom-control-input" 
+        (click)="notiTime('oneTime')" checked>
+        <label class="custom-control-label" style="color: #616a71;" for="customRadioInline1">ครั้งเดียว</label>
+      </div>
+      <div class="custom-control custom-radio custom-control-inline">
+        <input type="radio" id="customRadioInline2" name="customRadioInline1" class="custom-control-input" (click)="notiTime('repeat')">
+        <label class="custom-control-label" style="color: #616a71;" for="customRadioInline2">ทำซ้ำ</label>
+      </div>
+      <!--  -->
+      <div *ngIf="oneTimeForm">
+        <div class="dropdown mt-4">
+          <div class="input-style-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <p class="mb-0 text-input">ช่วงเวลา</p>
+            <p class="mt-2 mb-2 text-placeholder p-1" style="background-color: #FFF; color: #616a71;">กรุณาเลือกช่วงเวลา</p>
+          </div>
+          <!-- <div class="dropdown-menu scrollable-menu">
+              <a class="dropdown-item">a</a>
+          </div> -->
+        </div>
+      </div>
+      <div *ngIf="repeatForm">
+        <div class="row">
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="sun">
+                  <label class="custom-control-label" for="sun">วันอาทิตย์</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="mon">
+                  <label class="custom-control-label" for="mon">วันจันทร์</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="tue">
+                  <label class="custom-control-label" for="tue">วันอังคาร</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="wed">
+                  <label class="custom-control-label" for="wed">วันพุธ</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="thu">
+                  <label class="custom-control-label" for="thu">วันพฤหัสบดี</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="fri">
+                  <label class="custom-control-label" for="fri">วันศุกร์</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+          <div class="col-12">
+            <div class="row mt-2">
+              <div class="col-2 align-self-center">
+                <div class="custom-checkbox checkbox-m-l">
+                  <input class="custom-control-input" type="checkbox" id="sat">
+                  <label class="custom-control-label" for="sat">วันเสาร์</label>
+                </div>
+              </div>
+              <div class="col-auto align-self-center">
+                <input type="text" class="form-control" style="border-radius: 50px;" placeholder="เวลา">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <div class="row row-sm_ mt-4">
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal" data-target="#ModalPopupCancel"
+        data-backdrop="static" data-keyboard="false">ยกเลิกการทำงาน</button>
+      </div>
+      <div class="col col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+        data-backdrop="static" data-keyboard="false">บันทึกการแก้ไข</button>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+<!-- MODAL POPUP CANCEL -->
+<div class="modal fade" id="ModalPopupCancel" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการยกเลิกแจ้งเตือน ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/notification-edit-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP CANCEL -->
+
+<!-- MODAL POPUP SAVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการบันทึกการแก้ไขแจ้งเตือน ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/notification-edit-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP SAVE -->

@@ -1,0 +1,127 @@
+<div *ngIf="showContent">
+  <div class="text-center mt-5">
+    <img class="align-self-center" src="./assets/img/WebsiteLogo-hourglass-B-Edit2_MoreBubble_shadow.png" width="40"
+      height="40">
+    <p class="mb-0 text-white">Admin</p>
+  </div>
+  <div class="row mt-4 router" [routerLink]="['/seller-account-approve-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/1.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.sellerPath" [class.text-white]="!path.sellerPath">ร้านค้า</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/buyyer-account-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/2.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.buyyerPath" [class.text-white]="!path.buyyerPath">บัญชีผู้ซื้อ</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/chat-seller-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/3.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.chatSellerPath" [class.text-white]="!path.chatSellerPath">ข้อความร้านค้า</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/chat-buyyer-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/3.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.chatBuyyerPath" [class.text-white]="!path.chatBuyyerPath">ข้อความผู้ซื้อ</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/report-product-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/4.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.reportProductPath" [class.text-white]="!path.reportProductPath">แจ้งรายงานสินค้า</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/return-product-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/5.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.returnProductPath" [class.text-white]="!path.returnProductPath">คืนสินค้า</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/donate-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/6.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.donatePath" [class.text-white]="!path.donatePath">รายชื่อผู้รับบริจาค</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/condition-seller-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/7.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.conditionSellerPath" [class.text-white]="!path.conditionSellerPath">เงื่อนไขการสมัครร้านค้า</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/condition-buyyer-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/7.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.conditionBuyyerPath" [class.text-white]="!path.conditionBuyyerPath">เงื่อนไขการสมัครผู้ซื้อ</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/notification-add']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/8.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.notificationPath" [class.text-white]="!path.notificationPath">แจ้งเตือน</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/banner-online-list']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/9.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.bannerPath" [class.text-white]="!path.bannerPath">แบนเนอร์</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/vdo-add']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/vdo.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.vdoPath" [class.text-white]="!path.vdoPath">วิดีโอ</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/member-statistics-chart']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/10.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.memberPath" [class.text-white]="!path.memberPath">สมาชิก</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/percentage-shop']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/11.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.percentagePath" [class.text-white]="!path.percentagePath">เปอร์เซ็นต์ร้าน</p>
+    </div>
+  </div>
+  <div class="row mt-2 router" [routerLink]="['/admin-profile-setting']">
+    <div class="col-auto pr-0">
+      <img class="align-self-center" src="./assets/img/sidebar/12.png" width="30" height="30">
+    </div>
+    <div class="col pl-2">
+      <p class="mb-0" [class.text-active]="path.adminPath" [class.text-white]="!path.adminPath">Admin</p>
+    </div>
+  </div>
+</div>

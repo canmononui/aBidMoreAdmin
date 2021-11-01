@@ -1,0 +1,203 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/seller-account-approve-list']">
+      <p>อนุมัติร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-bank-approve-list']">
+      <p>อนุมัติบัญชีร้านค้า</p>
+    </div>
+    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/seller-search-list']">
+      <p>ข้อมูลร้านค้า</p>
+    </div>
+    <div class="col-auto pl-top-menu-sm router" [routerLink]="['/seller-report-list']">
+      <p>แจ้งปัญหา</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/seller-abidmore-gobal']">
+      <p>aBidMore Gobal</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <div class="row row-sm_">
+      <div class="col-12 col-md col-lg col-sm_">
+        <p class="mb-0">สถานะร้านค้า</p>
+        <p class="mb-0 productDataText">• ออนไลน์</p>
+      </div>
+      <div class="col-auto col-md-auto col-lg-auto col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-gobal" data-toggle="modal" data-target="#ModalPopupGobal"
+        data-backdrop="static" data-keyboard="false">เชิญชวนสมัคร aBidMore Gobal</button>
+      </div>
+      <div class="col-auto col-md-auto col-lg-auto col-sm_">
+        <button type="button" class="btn text-placeholder text-center btn-ban" data-toggle="modal" data-target="#ModalPopupBan"
+        data-backdrop="static" data-keyboard="false">ระงับร้านค้า</button>
+      </div>
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">วันที่สมัคร</p>
+    <p class="mb-0 productDataText">• 17/04/2020</p>
+    <!--  -->
+    <p class="mt-2 mb-0">วันที่อนุมัติ</p>
+    <p class="mb-0 productDataText">• 20/04/2020</p>
+    <!--  -->
+    <p class="mt-2 mb-0">Email</p>
+    <div class="row">
+      <div class="col-auto pr-0">
+        <p class="mb-0 productDataText">• suthad@gmail.com</p>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
+          data-target="#ModalPopupCopyMail">คัดลอก</button>
+      </div>
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">รหัสร้านค้า</p>
+    <div class="row">
+      <div class="col-auto pr-0">
+        <p class="mb-0 productDataText">• D679F8G4B800NK</p>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
+          data-target="#ModalPopupCopyShopKey">คัดลอก</button>
+      </div>
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">ชื่อร้านค้า</p>
+    <p class="mb-0 productDataText">• HappyShop</p>
+    <!--  -->
+    <p class="mt-2 mb-0">สินค้าที่ลงขาย (ประเภท,ชื่อ)</p>
+    <p class="mb-0 productDataText">• เสื้อผ้า</p>
+    <!--  -->
+    <p class="mt-2 mb-0">ชื่อจริง-นามสกุล</p>
+    <p class="mb-0 productDataText">• นายสุทัศน์ สุขจิต</p>
+    <!--  -->
+    <p class="mt-2 mb-0">บัญชีร้าน</p>
+    <!-- BANK CARD -->
+    <div class="row mt-2">
+      <div class="col-10 col-md-6 col-lg-4">
+        <div class="bank-card">
+          <div class="text-right">
+            <button type="button" class="btn text-center btn-delete pl-3 pr-3" data-toggle="modal" data-target="#ModalPopupDeleteBank">หน้าสมุดบัญชี</button>
+          </div>
+          <p class="mb-0">เลขที่บัญชี : 554-0-31133-2</p>
+          <p class="mb-0">ธนาคาร : ธ.กรุงเทพ</p>
+          <p class="mb-0">เลขที่สาขา : 9999</p>
+          <p class="mb-0">ชื่อบัญชี : นายฉัตรมงคล ศิลธรรม</p>
+          <p class="mb-0">ประเภทบัญชี : บุคคลธรรมดา</p>
+        </div>
+      </div>
+    </div>
+    <!--  -->
+    <p class="mt-2 mb-0">ที่อยู่</p>
+    <p class="mb-0 productDataText">• 167 ซอย25 กองรักษาการณ์ ตำบลปากน้ำ อำเภอเมือง จังหวัดสมุทรปราการ 10270</p>
+    <!--  -->
+    <p class="mt-2 mb-0">หมายเลขโทรศัพท์</p>
+    <p class="mb-0 productDataText">• 0649355415</p>
+    <!--  -->
+    <p class="mt-2 mb-0">เอกสารบัตรประชาชน</p>
+    <img class="img mt-0" src="./assets/img/TRKSET2C-12.jpg">
+    <!--  -->
+    <p class="mt-2 mb-0">หมายเหตุ</p>
+    <p class="mb-0 productDataText">• หากข้อมูลไม่ถูกต้องหรือข้อมูลร้านค้าไม่ครบถ้วน โปรดติดต่อร้านค้าผ่าน Email
+      ที่ให้มาเพื่อติดต่อขอข้อมูลเพิ่มเติม</p>
+    <!--  -->
+    <p class="mt-2 mb-0">รูปโปรไฟล์</p>
+    <img class="rounded-circle mt-1" style="width: 150px; height: 150px;" src="./assets/img/store-icon.png">
+    <!--  -->
+    <p class="mt-2 mb-0">รูปปกร้าน</p>
+    <img class="img-fluid mt-1 img mt-4" style="border-radius: 10px;" src="./assets/img/store-img-cover.png">
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP GOBAL -->
+<div class="modal fade" id="ModalPopupGobal" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการเชิญชวนร้านค้าเข้าร่วม aBidMore Gobal ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP GOBAL -->
+
+<!-- MODAL POPUP BAN -->
+<div class="modal fade" id="ModalPopupBan" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <div class="input-style">
+        <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการระงับร้านค้า</p>
+        <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
+        style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+        placeholder="เหตุผลการระงับร้านค้า"></textarea>
+      </div>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/seller-search-list']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP BAN -->
+
+<!-- MODAL POPUP COPY MAIL -->
+<div class="modal fade" id="ModalPopupCopyMail" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">คัดลอกอีเมลเรียบร้อย</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP COPY MAIL -->
+
+<!-- MODAL POPUP COPY SHOP KEY -->
+<div class="modal fade" id="ModalPopupCopyShopKey" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">คัดลอกรหัสร้านค้าเรียบร้อย</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP COPY SHOP KEY -->

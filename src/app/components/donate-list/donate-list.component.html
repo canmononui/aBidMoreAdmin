@@ -1,0 +1,79 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- CONTENT -->
+  <div class="card-border-3 bg-white mb-2">
+    <button type="button" class="btn text-placeholder text-center btn-green" data-toggle="modal" data-target="#ModalPopupAddShop"
+    data-backdrop="static" data-keyboard="false">เพิ่มรายชื่อผู้รับบริจาค</button>
+    <p class="mt-3 mb-2">รายชื่อผู้รับบริจาค</p>
+    <div class="row">
+      <!-- LIST 1 -->
+      <div class="col-12">
+        <div class="card-border-3 bg-white">
+          <div class="row row-sm_">
+            <div class="col-auto col-sm_ align-self-center">
+              <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/donate.png">
+            </div>
+            <div class="col col-sm_ align-self-center">
+              <p class="mb-0 text-dark">ศูนย์พิทักสิทธิเล็ก</p>
+              <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
+              <p class="mb-0 text-dark">Link : https://www.thaichildrights.org/</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- LIST 2 -->
+      <div class="col-12 mt-3">
+        <div class="card-border-3 bg-white">
+          <div class="row row-sm_">
+            <div class="col-auto col-sm_ align-self-center">
+              <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/donate.png">
+            </div>
+            <div class="col col-sm_ align-self-center">
+              <p class="mb-0 text-dark">ศูนย์พิทักสิทธิเล็ก</p>
+              <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
+              <p class="mb-0 text-dark">Link : https://www.thaichildrights.org/</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<!-- </div> -->
+
+<!-- MODAL POPUP ADD SHOP ABIDMORE GOBAL -->
+<div class="modal fade" id="ModalPopupAddShop" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <div class="input-style">
+        <p class="mb-0 text-input">ชื่อผู้รับจาค</p>
+        <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #donateName_ placeholder="ข้อความ">
+      </div>
+      <div class="input-style mt-2">
+        <p class="mb-0 text-input">link (ข้อมูลเพิ่มเติม)</p>
+        <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #donateName_ placeholder="link">
+      </div>
+      <div class="row mt-2">
+        <div class="col-auto pr-0 align-self-center">
+          <p class="mb-0">โลโก้มูลนิธิ.jpg</p>
+        </div>
+        <div class="col align-self-center">
+          <button type="button" class="btn text-placeholder text-center btn-up">อัพรูปโลโก้ผู้รับบริจาค</button>
+        </div>
+      </div>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP ADD SHOP ABIDMORE GOBAL -->

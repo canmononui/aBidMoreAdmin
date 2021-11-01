@@ -1,0 +1,89 @@
+<div *ngIf="showContent">
+  <div class="h-vh">
+    <div class="container h-100 d-flex justify-content-center">
+      <div class="my-auto" style="width: 100%;">
+        <div class="m-0 card_">
+          <div class="container">
+            <div *ngIf="showFromLogin">
+              <!-- INPUT FORM LOGIN -->
+              <div class="row row-right">
+                <div class="col">
+                  <h2 class="mb-0">เข้าสู่ระบบ</h2>
+                </div>
+                <div class="col align-self-center text-right">
+                  <a (click)="forgotPass()" class="forgot-text">ลืมรหัสผ่าน</a>
+                </div>
+              </div>
+              <div class="input-style mt-4">
+                <p class="mb-0 text-input">Email</p>
+                <input type="email" class="form-control border-0 p-0 text-placeholder"
+                  style="box-shadow: none; background-color: #F2F6FA;" #email_ placeholder="email@example.com">
+              </div>
+              <div class="input-style mt-2">
+                <p class="mb-0 text-input">รหัสผ่าน</p>
+                <input type="password" class="form-control border-0 p-0 text-placeholder"
+                  style="box-shadow: none; background-color: #F2F6FA;" #password_ placeholder="รหัสผ่าน">
+              </div>
+              <!-- BUTTON SUBMIT -->
+              <!-- <p *ngIf="auth.statusloginFail" class="mb-0 text-danger">ข้อผิดพลาดอีเมลหรือรหัสผ่านไม่ถูกต้อง</p> -->
+              <button [routerLink]="['/seller-account-approve-list']" (click)="subMitLogin(email_.value, password_.value)" type="button"
+                class="router btn mt-3 btn-submit">
+                เข้าสู่ระบบ
+              </button>
+              <!-- END INPUT FORM LOGIN -->
+            </div>
+            <div *ngIf="showForgotPass">
+              <!-- INPUT FORGOT PASS -->
+              <div class="row row-right">
+                <div class="col-8">
+                  <h2 class="mb-0">ลืมรหัสผ่าน</h2>
+                </div>
+                <div class="col-4 align-self-center text-right">
+                  <a (click)="backWard()" class="forgot-text">
+                    <i class="fa fa-angle-left mr-2"></i>ย้อนกลับ
+                  </a>
+                </div>
+              </div>
+              <div class="input-style mt-4">
+                <p class="mb-0 text-input">Email</p>
+                <input type="email" class="form-control border-0 p-0 text-placeholder"
+                  style="box-shadow: none; background-color: #F2F6FA;" maxlength="100" #emailResetPass_
+                  placeholder="email@example.com">
+              </div>
+              <button data-toggle="modal" data-target="#ModalPopupResetPass" data-backdrop="static"
+                data-keyboard="false" (click)="resetPass(emailResetPass_.value)" type="button"
+                class="btn mt-3 btn-submit">
+                เปลี่ยนรหัสผ่าน
+              </button>
+              <!-- END INPUT FORGOT PASS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL POPUP RESET PASS -->
+<div class="modal fade" id="ModalPopupResetPass" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการเปลี่ยนรหัสผ่าน ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
+            [routerLink]="['/signin-status-waiting']" (click)="firebaseResetPass()">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP RESET PASS -->

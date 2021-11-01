@@ -1,0 +1,140 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" [routerLink]="['/admin-profile-setting']">
+      <p>ตั้งค่าบัญชี</p>
+    </div>
+    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/admin-create-account-admin']">
+      <p>สร้างบัญชีแอดมิน</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-account-admin-list']">
+      <p>บัญชีแอดมิน</p>
+    </div>
+    <div class="col-auto  pl-top-menu-sm router" [routerLink]="['/admin-approve-account-access']">
+      <p>อนุมัติการเข้าใช้ระบบ</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-forgot-password']">
+      <p>ลืมรหัสผ่าน</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-money-setting']">
+      <p>ค่าเงิน</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  
+  <!-- CONTENT -->
+  <div class="mb-2">
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">ชื่อพนักงาน (EN)</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #name_ placeholder="ตัวอย่าง Somrak">
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">นามสกุลพนักงาน (EN)</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #lastname_ placeholder="ตัวอย่าง Rakchat">
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">ตำแหน่งงาน</p>
+      <input maxlength="100" class="form-control border-0 pl-3 text-placeholder bg-input" #lastname_ placeholder="ข้อความ">
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">งานที่มอบหมาย</p>
+      <div class="row">
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="shop">
+            <label class="custom-control-label" for="shop">ร้านค้า</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="buyyerAccount">
+            <label class="custom-control-label" for="buyyerAccount">บัญชีผู้ซื้อ</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="chatSeller">
+            <label class="custom-control-label" for="chatSeller">ข้อความร้านค้า</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="chatBuyyer">
+            <label class="custom-control-label" for="chatBuyyer">ข้อความผู้ซื้อ</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="reportProduct">
+            <label class="custom-control-label" for="reportProduct">แจ้งรายงานสินค้า</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="returnProduct">
+            <label class="custom-control-label" for="returnProduct">คืนสินค้า</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="donate">
+            <label class="custom-control-label" for="donate">รายชื่อผู้รับบริจาค</label>
+          </div>
+        </div>
+
+        <div class="col-auto">
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="conditionSeller">
+            <label class="custom-control-label" for="conditionSeller">เงื่อนไขการสมัครร้านค้า</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="conditionBuyyer">
+            <label class="custom-control-label" for="conditionBuyyer">เงื่อนไขการสมัครผู้ซื้อ</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="notification">
+            <label class="custom-control-label" for="notification">แจ้งเตือน</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="banner">
+            <label class="custom-control-label" for="banner">แบนเนอร์</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="vdo">
+            <label class="custom-control-label" for="vdo">วิดีโอ</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="member">
+            <label class="custom-control-label" for="member">สมาชิก</label>
+          </div>
+          <div class="custom-checkbox checkbox-m-l">
+            <input class="custom-control-input" type="checkbox" id="percentage">
+            <label class="custom-control-label" for="percentage">เปอร์เซ็นต์ร้าน</label>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- BUTTON -->
+    <div class="mt-2">
+      <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+      data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ต้องการสร้างบัญชีแอดมิน ?</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/admin-create-account-admin']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

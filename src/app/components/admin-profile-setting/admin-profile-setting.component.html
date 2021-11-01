@@ -1,0 +1,68 @@
+<!-- <div class="pl-2 pr-2"> -->
+  <!-- TOP MENU -->
+  <div class="row">
+    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/admin-profile-setting']">
+      <p>ตั้งค่าบัญชี</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-create-account-admin']">
+      <p>สร้างบัญชีแอดมิน</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-account-admin-list']">
+      <p>บัญชีแอดมิน</p>
+    </div>
+    <div class="col-auto pl-top-menu-sm router" [routerLink]="['/admin-approve-account-access']">
+      <p>อนุมัติการเข้าใช้ระบบ</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-forgot-password']">
+      <p>ลืมรหัสผ่าน</p>
+    </div>
+    <div class="col-auto pl-1 router" [routerLink]="['/admin-money-setting']">
+      <p>ค่าเงิน</p>
+    </div>
+  </div>
+  <!-- END TOP MENU -->
+  
+  <!-- CONTENT -->
+  <div class="mb-2">
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">รหัสผ่านเก่า</p>
+      <input maxlength="100" type="password" class="form-control border-0 pl-3 text-placeholder bg-input" #reason_ placeholder="รหัสผ่าน">
+    </div>
+    <!--  -->
+    <div class="input-style mt-2">
+      <p class="mb-0 text-input">รหัสผ่านใหม่</p>
+      <input maxlength="100" type="password" class="form-control border-0 pl-3 text-placeholder bg-input" #reason_ placeholder="รหัสผ่าน">
+    </div>
+    <!-- BUTTON -->
+    <div class="mt-2">
+      <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
+      data-backdrop="static" data-keyboard="false">บันทึกข้อมูล</button>
+    </div>
+  </div>
+<!-- </div> -->
+
+
+<!-- MODAL POPUP NOT APPROVE -->
+<div class="modal fade" id="ModalPopupSave" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">ข้อมูลการขอแก้ไขข้อมูลถูกส่งไปยัง Email กรุณายืนยันข้อมูล</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal" [routerLink]="['/admin-profile-setting']">ตกลง</button>
+        </div>
+        <div class="mt-2">
+          <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
+            <p class="text-center">ยกเลิก</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP NOT APPROVE -->

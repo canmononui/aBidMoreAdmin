@@ -1,0 +1,140 @@
+.card-border-3 {
+  border: 3px solid #E7EDF4; 
+  border-radius: 15px;
+  padding: 15px;
+}
+
+.input-style {
+  padding: 16px 16px 16px 24px; 
+  border-radius: 10px; 
+  background-color: #F2F6FA;
+}
+
+.scrollable-menu {
+  height: auto;
+  max-height: 250px;
+  overflow-x: hidden;
+}
+
+.row-top-menu {
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+.col-top-menu {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.dropdown-item:active{
+  background-color: #D9534F;
+}
+
+/* Datepicker */
+.form-group.hidden {
+  width: 0;
+  margin-top: 65px;
+  border: none;
+  padding: 0;
+}
+
+/* .form-group.hidden-mt {
+  margin-top: 65px;
+} */
+
+.custom-day {
+  text-align: center;
+  padding: 0.185rem 0.25rem;
+  display: inline-block;
+  height: 2rem;
+  width: 2rem;
+}
+
+.custom-day.focused {
+  background-color: #e6e6e6;
+}
+
+.custom-day.range, .custom-day:hover {
+  background-color: rgb(2, 117, 216);
+  color: white;
+}
+
+.custom-day.faded {
+  background-color: rgba(2, 117, 216, 0.5);
+}
+/* End Datepicker */
+
+.productDataText {
+  color: #8E8D8D;
+}
+
+.bg-input {
+  background-color: #F2F6FA;
+  box-shadow: none;
+  border-radius: 5px;
+}
+
+.btn-up {
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #000; 
+  border: 1px solid #000; 
+  background-color: #FFF;
+}
+
+.btn-l-black {
+  width: 100%; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  border: 1px solid #373E48; 
+  background-color: #373E48;
+}
+
+.btn-r-color {
+  width: 100%; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  /* border: 1px solid #D9534F; 
+  background-color: #FE5721; */
+  border: 1px solid #5CB85C;
+  background-color: #5CB85C;
+}
+
+/* .form-inline {
+  align-items: top;
+} */
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (max-width: 480px) {
+  .card-border-3 {
+    border: 1.5px solid #E7EDF4;
+    border-radius: 15px;
+    padding: 8px;
+  }
+
+  .input-style {
+    padding: 10px 10px 10px 15px; 
+    border-radius: 0px;
+  }
+
+  .text-input {
+    font-size: 0.8rem;
+  }
+
+  .text-placeholder {
+    font-size: 0.7rem;
+  }
+
+  .row-sm_ {
+    margin-left: -8px;
+    margin-right: -8px;
+  }
+
+  .col-sm_ {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+}

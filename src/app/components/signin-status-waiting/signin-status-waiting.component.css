@@ -1,0 +1,27 @@
+.card_ {
+  padding: 35px 20px 35px 20px;
+  background-color: #FFF;
+}
+
+.nav-sm {
+  display: none;
+}
+
+.h-vh {
+  height: 100vh;
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media only screen and (max-width: 480px) {
+  .h-vh {
+    height: 95vh;
+  }
+
+  .nav-sm {
+    display: flex;
+  }
+
+  .card_ {
+    padding: 0px 0px 0px 0px;
+  }
+}
