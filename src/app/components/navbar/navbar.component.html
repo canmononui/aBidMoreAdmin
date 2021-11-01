@@ -11,6 +11,7 @@
         <img *ngIf="path.buyyerPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/2-1.png">
         <img *ngIf="path.chatSellerPath || path.chatBuyyerPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/3-1.png">
         <img *ngIf="path.reportProductPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/4-1.png">
+        <img *ngIf="path.orderPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/5-1.png">
         <img *ngIf="path.returnProductPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/5-1.png">
         <img *ngIf="path.donatePath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/6-1.png">
         <img *ngIf="path.conditionSellerPath || path.conditionBuyyerPath" class="align-self-center" style="width: 30px; height: 30px;" src="./assets/img/sidebar/7-1.png">
@@ -27,6 +28,7 @@
         <p *ngIf="path.chatSellerPath" class="mb-0 text-dark">ข้อความร้านค้า</p>
         <p *ngIf="path.chatBuyyerPath" class="mb-0 text-dark">ข้อความผู้ซื้อ</p>
         <p *ngIf="path.reportProductPath" class="mb-0 text-dark">แจ้งรายงานสินค้า</p>
+        <p *ngIf="path.orderPath" class="mb-0 text-dark">คำสั่งซื้อ</p>
         <p *ngIf="path.returnProductPath" class="mb-0 text-dark">คืนสินค้า</p>
         <p *ngIf="path.donatePath" class="mb-0 text-dark">รายชื่อผู้รับบริจาค</p>
         <p *ngIf="path.conditionSellerPath" class="mb-0 text-dark">เงื่อนไขการสมัครร้านค้า</p>
@@ -59,7 +61,7 @@
       </a>
     </div>
     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownShop">
-      <a class="dropdown-item router" [routerLink]="['/signin']">ออกจากระบบ</a>
+      <a class="dropdown-item router" [class.disabled]="!auth.authenticated" (click)="signOut()">ออกจากระบบ</a>
     </div>
   </div> 
 </div>

@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+// FIREBASE
+import { AngularFireDatabase } from '@angular/fire/database';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signin',
@@ -15,10 +21,14 @@ export class SigninComponent implements OnInit {
   public emailForResetPass: any;
   public resetPassStatus = false;
 
-  constructor() { }
+  constructor(    
+    public firestore: AngularFirestore, 
+    public auth: AuthService,
+    ) { 
+      auth.getCurrentLoggedIn();
+    }
 
   ngOnInit(): void {
-
   }
 
   forgotPass() {
@@ -32,7 +42,7 @@ export class SigninComponent implements OnInit {
   }
 
   subMitLogin(email , password) {
-    // this.auth.emailLogin(email, password)
+    this.auth.emailSignin(email, password)
   }
 
   resetPass(email) {

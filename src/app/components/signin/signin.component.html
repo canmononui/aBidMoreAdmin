@@ -10,7 +10,7 @@
                 <div class="col">
                   <h2 class="mb-0">เข้าสู่ระบบ</h2>
                 </div>
-                <div class="col align-self-center text-right">
+                <div class="col align-self-center text-right disabled">
                   <a (click)="forgotPass()" class="forgot-text">ลืมรหัสผ่าน</a>
                 </div>
               </div>
@@ -22,11 +22,12 @@
               <div class="input-style mt-2">
                 <p class="mb-0 text-input">รหัสผ่าน</p>
                 <input type="password" class="form-control border-0 p-0 text-placeholder"
-                  style="box-shadow: none; background-color: #F2F6FA;" #password_ placeholder="รหัสผ่าน">
+                  style="box-shadow: none; background-color: #F2F6FA;" #password_ placeholder="รหัสผ่าน"
+                  (keyup.enter)="subMitLogin(email_.value, password_.value)">
               </div>
               <!-- BUTTON SUBMIT -->
-              <!-- <p *ngIf="auth.statusloginFail" class="mb-0 text-danger">ข้อผิดพลาดอีเมลหรือรหัสผ่านไม่ถูกต้อง</p> -->
-              <button [routerLink]="['/seller-account-approve-list']" (click)="subMitLogin(email_.value, password_.value)" type="button"
+              <p *ngIf="auth.statusloginFail" class="mb-0 text-danger">ข้อผิดพลาดอีเมลหรือรหัสผ่านไม่ถูกต้อง</p>
+              <button (click)="subMitLogin(email_.value, password_.value)" type="button"
                 class="router btn mt-3 btn-submit">
                 เข้าสู่ระบบ
               </button>

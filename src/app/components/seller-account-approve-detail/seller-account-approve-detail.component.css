@@ -50,6 +50,11 @@
   background-color: #F2F6FA;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
 
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (max-width: 480px) {

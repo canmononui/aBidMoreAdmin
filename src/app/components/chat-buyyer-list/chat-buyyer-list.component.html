@@ -1,59 +1,125 @@
 <div class="row">
-  <div class="col pr-0">
-    <input type="text" class="form-control" style="border-radius: 50px;" placeholder="ค้นหาจากรหัสผู้ใช้งาน/ชื่อผู้ใช้งาน">
-  </div>
-  <div class="col-auto">
-    <button type="button" class="btn text-placeholder text-center btn-copy">ค้นหา</button>
+  <div class="col">
+    <input type="text" class="form-control" style="border-radius: 50px;" (keyup)='searchChat($event)'
+      placeholder="ค้นหาด้วยชื่อผู้ซื้อ">
   </div>
 </div>
 
+<!-- NO CHAT LIST -->
+<div *ngIf="showChatList && chatListNonRead.length == 0 && chatListReaded.length == 0" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p class="mb-0" style="font-size: .8rem;">เริ่มต้นสนทนาง่าย ๆ เพียงค้นหาร้านค้าและกดส่งข้อความ</p>
+</div>
+
+<div *ngIf="showChatList" class="row">
+  <!-- CHAT LIST -->
+  <!-- MES NON READ LIST -->
+  <div class="col-12 mt-3" *ngFor="let chatNonRead of chatListNonRead.sort(sortFunc)">
+    <div (click)="gotoChatRoom(chatNonRead.key, chatNonRead.uid, chatNonRead.displayName)"
+      class="card-border-3 bg-white" style="cursor: pointer;">
+      <div class="row">
+        <div class="col">
+          <div class="row row-sm_">
+            <div class="col-auto col-sm_ align-self-center">
+              <img class="rounded-circle" style="width: 70px; height: 70px;"
+                src="{{ chatNonRead.value.chatTo.imgUrl }}">
+            </div>
+            <div class="col pl-0 col-sm_ align-self-center">
+              <p class="mb-0 text-dark">{{ chatNonRead.value.chatTo.displayName }}</p>
+              <p class="mb-0 text-dark">{{ chatNonRead.value.lastMessage.message }} · {{
+                chatNonRead.value.updateAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+                chatNonRead.value.updateAt.seconds*1000
+                | date: "HH:mm" }}</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-auto align-self-center">
+          <span class="dot-notiChat"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MES NON READ LIST -->
+  <!-- MES READED LIST -->
+  <div class="col-12 mt-3" *ngFor="let chatReaded of chatListReaded.sort(sortFunc)">
+    <div (click)="gotoChatRoom(chatReaded.key, chatReaded.uid, chatReaded.displayName)" class="card-border-3 bg-white"
+      style="cursor: pointer;">
+      <div class="row">
+        <div class="col">
+          <div class="row row-sm_">
+            <div class="col-auto col-sm_ align-self-center">
+              <img class="rounded-circle" style="width: 70px; height: 70px;" src="{{ chatReaded.value.chatTo.imgUrl }}">
+            </div>
+            <div class="col pl-0 col-sm_ align-self-center">
+              <p class="mb-0 text-dark">{{ chatReaded.value.chatTo.displayName }}</p>
+              <p class="mb-0 readed-msg-color">{{ chatReaded.value.lastMessage.message }} · {{
+                chatReaded.value.updateAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+                chatReaded.value.updateAt.seconds*1000
+                | date: "HH:mm" }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- MES READED LIST -->
+</div>
+
+<!-- SEARCH -->
+<!-- NO MES SEARCH LIST -->
+<div *ngIf="showNoChatList" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p class="mb-0" style="font-size: .8rem;">ไม่พบข้อความ</p>
+  <p class="mb-0" style="font-size: .8rem;">เริ่มต้นสนทนาง่าย ๆ เพียงค้นหาร้านค้าและกดส่งข้อความ</p>
+</div>
+<!-- NO MES SEARCH LIST -->
 <div class="row">
-  <!-- LIST 1 -->
-  <div class="col-12 mt-3 router" [routerLink]="['/chat-buyyer-message']">
-    <div class="card-border-3 bg-white">
+  <!-- MES SEARCH NON READ LIST -->
+  <div class="col-12 mt-3" *ngFor="let chatNonRead of chatSearchNonRead.sort(sortFunc)">
+    <div (click)="gotoChatRoom(chatNonRead.key, chatNonRead.uid, chatNonRead.displayName)"
+      class="card-border-3 bg-white" style="cursor: pointer;">
       <div class="row">
         <div class="col">
           <div class="row row-sm_">
             <div class="col-auto col-sm_ align-self-center">
-              <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/business-girl-1.png">
+              <img class="rounded-circle" style="width: 70px; height: 70px;"
+                src="{{ chatNonRead.value.chatTo.imgUrl }}">
             </div>
             <div class="col pl-0 col-sm_ align-self-center">
-              <p class="mb-0 text-dark">canmononui</p>
-              <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
-          <p class="mb-0 text-dark">ข้อความล่าสุด · 15 มี.ค. 12:31</p>
+              <p class="mb-0 text-dark">{{ chatNonRead.value.chatTo.displayName }}</p>
+              <p class="mb-0 text-dark">{{ chatNonRead.value.lastMessage.message }} · {{
+                chatNonRead.value.updateAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+                chatNonRead.value.updateAt.seconds*1000
+                | date: "HH:mm" }}</p>
             </div>
-          </div>  
-        </div>  
+          </div>
+        </div>
         <div class="col-auto align-self-center">
-        <span class="badge badge-pill" style="padding-top: 5px; padding-bottom: 5px; color: #FFF; background-color: #E54040; border: 1px solid #EEE;">
-          8
-        </span>
-        </div> 
+          <span class="dot-notiChat"></span>
+        </div>
       </div>
     </div>
   </div>
-  <!-- LIST 2 -->
-  <div class="col-12 mt-3 router" [routerLink]="['/chat-buyyer-message']">
-    <div class="card-border-3 bg-white">
+  <!-- MES SEARCH NON READ LIST -->
+  <!-- MES SEARCH READED LIST -->
+  <div class="col-12 mt-3" *ngFor="let chatReaded of chatSearchReaded.sort(sortFunc)">
+    <div (click)="gotoChatRoom(chatReaded.key, chatReaded.uid, chatReaded.displayName)" class="card-border-3 bg-white"
+      style="cursor: pointer;">
       <div class="row">
         <div class="col">
           <div class="row row-sm_">
             <div class="col-auto col-sm_ align-self-center">
-              <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/business-girl-1.png">
+              <img class="rounded-circle" style="width: 70px; height: 70px;" src="{{ chatReaded.value.chatTo.imgUrl }}">
             </div>
             <div class="col pl-0 col-sm_ align-self-center">
-              <p class="mb-0 text-dark">canmononui</p>
-              <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
-          <p class="mb-0 text-dark">ข้อความล่าสุด · 15 มี.ค. 12:31</p>
+              <p class="mb-0 text-dark">{{ chatReaded.value.chatTo.displayName }}</p>
+              <p class="mb-0 readed-msg-color">{{ chatReaded.value.lastMessage.message }} · {{
+                chatReaded.value.updateAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+                chatReaded.value.updateAt.seconds*1000
+                | date: "HH:mm" }}</p>
             </div>
-          </div>  
-        </div>  
-        <div class="col-auto align-self-center">
-        <span class="badge badge-pill" style="padding-top: 5px; padding-bottom: 5px; color: #FFF; background-color: #E54040; border: 1px solid #EEE;">
-          8
-        </span>
-        </div> 
+          </div>
+        </div>
       </div>
     </div>
   </div>
+  <!-- MES SEARCH READED LIST -->
 </div>

@@ -81,9 +81,41 @@
   background-color: #F2F6FA;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.btn-s {
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  border: 1px solid #28a745; 
+  background-color: #28a745;
+}
+
+.row-img-m {
+  margin-left: -4px;
+  margin-right: -4px;
+}
+
+.col-img-p {
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.shop-file-m-w {
+  border-radius: 10px;
+  max-width: 40%;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (max-width: 480px) {
-
+  .shop-file-m-w {
+    border-radius: 10px;
+    max-width: 60%;
+  }
+  
   .card-border-3 {
     border: 1.5px solid #E7EDF4;
     border-radius: 15px;

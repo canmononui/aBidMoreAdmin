@@ -4,7 +4,7 @@
     <div class="col-auto router" [routerLink]="['/seller-account-approve-list']">
       <p>อนุมัติร้านค้า</p>
     </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/seller-bank-approve-list']">
+    <div class="col-auto pl-1 router disabled" [routerLink]="['/seller-bank-approve-list']">
       <p>อนุมัติบัญชีร้านค้า</p>
     </div>
     <div class="col-auto pl-1 router" [routerLink]="['/seller-search-list']">
@@ -13,63 +13,69 @@
     <div class="col-auto pl-top-menu-sm router" style="color: #FFA101;" [routerLink]="['/seller-report-list']">
       <p>แจ้งปัญหา</p>
     </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/seller-abidmore-gobal']">
+    <div class="col-auto pl-1 router disabled" [routerLink]="['/seller-abidmore-gobal']">
       <p>aBidMore Gobal</p>
     </div>
   </div>
   <!-- END TOP MENU -->
 
   <!-- CONTENT -->
-  <div class="card-border-3 bg-white mb-2">
+  <div *ngIf="showContent" class="card-border-3 bg-white mb-2">
     <!--  -->
     <div class="row row-sm_">
       <div class="col-auto col-sm_ align-self-center">
         <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
       </div>
       <div class="col col-sm_ align-self-center">
-        <p class="mb-0 text-dark">HappyShop</p>
-        <p class="mb-0 text-dark">รหัสร้านค้า : D679F8G4B800NK</p>
-        <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
+        <p class="mb-0 text-dark">ชื่อร้านค้า : {{ reportReview.shopName }}</p>
+        <p class="mb-0 text-dark">รหัสร้านค้า : {{ reportReview.sellerUID }}</p>
+        <p class="mb-0 text-dark">เหตุผล : {{ reportReview.reason }}</p>
+        <p class="mb-0 text-dark">วันที่ : {{ reportReview.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
       </div>
     </div>
     <!--  -->
     <div class="card-border-3 bg-white mt-2">
       <div class="row row-sm_">
         <div class="col-auto col-sm_ align-self-center">
-          <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/business-girl-1.png">
+          <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/profile-icon-BG.svg">
         </div>
         <div class="col col-sm_ align-self-center">
-          <p class="mb-0 text-dark">USER NAME</p>
+          <p class="mb-0 text-dark">{{ reportReview.commentReview.value.displayName }}</p>
           <ul class="rating-stars">
             <li>
-              <i class="fa fa-star" style="color: #FFA101;"></i>
-              <i class="fa fa-star" style="color: #FFA101;"></i>
-              <i class="fa fa-star" style="color: #FFA101;"></i>
-              <i class="fa fa-star-o" style="color: #FFA101;"></i>
-              <i class="fa fa-star-o" style="color: #FFA101;"></i>
+              <i class="fa star-color" 
+                [class.fa-star]="reportReview.commentReview.value.ratingStars >= 1"
+                [class.fa-star-o]="reportReview.commentReview.value.ratingStars < 1"></i>
+              <i class="fa star-color" 
+                [class.fa-star]="reportReview.commentReview.value.ratingStars >= 2"
+                [class.fa-star-o]="reportReview.commentReview.value.ratingStars < 2"></i>
+              <i class="fa star-color" 
+                [class.fa-star]="reportReview.commentReview.value.ratingStars >= 3"
+                [class.fa-star-o]="reportReview.commentReview.value.ratingStars < 3"></i>
+              <i class="fa star-color" 
+                [class.fa-star]="reportReview.commentReview.value.ratingStars >= 4"
+                [class.fa-star-o]="reportReview.commentReview.value.ratingStars < 4"></i>
+              <i class="fa star-color" 
+                [class.fa-star]="reportReview.commentReview.value.ratingStars >= 5"
+                [class.fa-star-o]="reportReview.commentReview.value.ratingStars < 5"></i>
             </li>
           </ul>
         </div>
       </div>
-      <!-- <div class="mt-2" style="padding: 16px; background-color: #F2F6FA; border-radius: 10px;">
-        dfhg
-      </div> -->
       <!-- PRODUCT DETAIL -->
       <div class="container-bg-color mt-2">
         <div class="row m-0">
           <div class="col-auto p-0">
-            <img src="./assets/img/bag.png" class="img-fluid border-radius-10" width="80 px">
+            <img src="{{ reportReview.imgProduct1.imgUrl }}" class="img-fluid border-radius-10" width="80 px">
           </div>
           <div class="col-auto pl-2">
-            <p class="mb-0">Adidas NMD</p>
-            <p class="mb-0">รองเท้า NMD 360 ผสมรองเท้า NMD...</p>
-            <p class="mb-0">• F34G7gk5Hj2io8p9</p>
+            <!-- <p class="mb-0">Adidas NMD</p> -->
+            <p class="mb-0">• {{ reportReview.productKey }}</p>
             <p class="mb-0 productDataText">รหัสสินค้า</p>
           </div>
         </div>
       </div>
-      <p class="mt-2 mb-0">สินค้าตรงตามรูป รายละเอียดครบสอบถามข้อความทางร้านร้านตอบดีมากให้รายละเอียดครบถ้วน แพคส่งสินค้า
-        กันกระแทกดีสุดๆ มีเก็บเงินปลายทางด้วยโหวตให้เลย</p>
+      <p class="mt-2 mb-0">{{ reportReview.commentReview.value.comment }}</p>
     </div>
     <!-- BUTTON -->
     <div class="row row-sm_ mt-4">
@@ -95,13 +101,14 @@
         <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการไม่อนุมัติการลบความคิดเห็น</p>
         <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
         style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-        placeholder="เหตุผลการไม่อนุมัติการลบความคิดเห็น"></textarea>
+        placeholder="เหตุผลการไม่อนุมัติการลบความคิดเห็น"
+        (keyup)="notAppInput($event)"></textarea>
       </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!notAppCheck"
             style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/seller-report-list']">ตกลง</button>
+            data-dismiss="modal" (click)="notAppReport(reasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -125,7 +132,7 @@
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
           <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
             style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/seller-report-list']">ตกลง</button>
+            data-dismiss="modal" (click)="appReport()">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">

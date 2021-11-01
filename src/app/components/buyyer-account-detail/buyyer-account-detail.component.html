@@ -1,93 +1,239 @@
-<!-- <div class="pl-2 pr-2"> -->
+<div *ngIf="showContent">
   <!-- CONTENT -->
   <div class="card-border-3 bg-white mb-2">
+    <div *ngIf="userBuyer.userStatus == 'banByAdmin'" class="mb-4">
+      <p class="text-danger mt-2 mb-0">ระงับบัญชีโดย</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.accountBan.banByAdminUID }}</p>
+      <!--  -->
+      <p class="text-danger mt-2 mb-0">เหตุผลระงับบัญชี</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.accountBan.reason }}</p>
+      <!--  -->
+      <p class="text-danger mt-2 mb-0">วันที่ระงับบัญชี</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.accountBan.banAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    </div>
     <div class="row row-sm_">
       <div class="col-12 col-md col-lg col-sm_">
         <p class="mt-2 mb-0">รูปโปรไฟล์</p>
-        <img class="rounded-circle mt-1" style="width: 150px; height: 150px;" src="./assets/img/store-icon.png">
+        <img class="rounded-circle mt-1" [class.disabled]="userBuyer.userStatus == 'banByAdmin'" style="width: 150px; height: 150px;" src="{{ userBuyer.profileImg.imgUrl }}">
       </div>
       <div class="col-auto col-md-auto col-lg-auto col-sm_">
-        <button type="button" class="btn text-placeholder text-center btn-ban" data-toggle="modal"
-          data-target="#ModalPopupBan" data-backdrop="static" data-keyboard="false">ระงับการใช้งานบัญชีนี้</button>
+        <!-- BAN USER BUYER -->
+        <button *ngIf="userBuyer.userStatus == 'approve'" type="button" class="btn text-placeholder text-center btn-ban" 
+        data-toggle="modal" data-target="#ModalPopupBan" data-backdrop="static" data-keyboard="false">ระงับการใช้งานบัญชีนี้</button>
+        <!-- UN BAN USER BUYER -->
+        <button *ngIf="userBuyer.userStatus == 'banByAdmin'" type="button" class="btn text-placeholder text-center btn-s" 
+        (click)="unBanUserBuyer()">ยกเลิกระงับการใช้งานบัญชีนี้</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อผู้ใช้งาน</p>
-    <p class="mb-0 productDataText">• canmononui</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.displayName }}</p>
     <!--  -->
     <p class="mt-2 mb-0">สถานะบัญชี</p>
-    <p class="mb-0 productDataText">• ออนไลน์</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.userStatus }}</p>
     <!--  -->
     <p class="mt-2 mb-0">Email</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• suthad@gmail.com</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ userBuyer.email }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyMail">คัดลอก</button>
+          data-target="#ModalPopupCopyMail" (click)="copyMail()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">รหัสผู้ใช้งาน</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• UID097834572</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ userBuyer.uid }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyKeyUID">คัดลอก</button>
+          data-target="#ModalPopupCopyKeyUID" (click)="copyUID()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อจริง-นามสกุล</p>
-    <p class="mb-0 productDataText">• นายสุทัศน์ สุขจิต</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.name }} {{ userBuyer.lastName }}</p>
     <!--  -->
     <div class="row">
       <div class="col-auto">
         <p class="mb-0">เพศ</p>
-        <p class="mb-0 productDataText">• ชาย</p>
+        <p class="mb-0 productDataText">• {{ userBuyer.gender }}</p>
       </div>
       <div class="col-auto">
         <p class="mb-0">อายุ</p>
-        <p class="mb-0 productDataText">• 26 ปี</p>
+        <p class="mb-0 productDataText">• {{ userBuyer.age }} ปี</p>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">หมายเลขโทรศัพท์</p>
-    <p class="mb-0 productDataText">• 0649355415</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.phoneNumber }}</p>
+    <!--  -->
+    <p class="mt-2 mb-0">รหัสแนะนำของผู้ซื้อ</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.yourRefCode }}</p>
+    <!--  -->
+    <p class="mt-2 mb-0">รหัสแนะนำที่เพิ่มเข้าในระบบ</p>
+    <p class="mb-0 productDataText">• <a *ngIf="userBuyer.refCode == null">ไม่มี</a><a *ngIf="userBuyer.refCode != null">{{ userBuyer.refCode }}</a></p>
     <!--  -->
     <p class="mt-2 mb-0">วันที่สมัคร</p>
-    <p class="mb-0 productDataText">• 17/04/2020</p>
+    <p class="mb-0 productDataText">• {{ userBuyer.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    <!--  -->
+    <div *ngIf="userBuyer.privacyPolicyAt != undefined">
+      <p class="mt-2 mb-0">วันที่กดยอมรับอนุญาตข้อมูล</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.privacyPolicyAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    </div>
   </div>
 
-  <div class="card-border-3 bg-white mb-2">
-    <!--  -->
-    <p class="mt-2 mb-0">ที่อยู่ 1</p>
-    <p class="mb-0 productDataText">• 167 ซอย25 กองรักษาการณ์ ตำบลปากน้ำ อำเภอเมือง จังหวัดสมุทรปราการ 10270</p>
-    <!--  -->
-    <p class="mt-2 mb-0">ที่อยู่ 2</p>
-    <p class="mb-0 productDataText">• 167 ซอย25 กองรักษาการณ์ ตำบลปากน้ำ อำเภอเมือง จังหวัดสมุทรปราการ 10270</p>
-    <!--  -->
-    <p class="mt-2 mb-0">ที่อยู่ 3</p>
-    <p class="mb-0 productDataText">• 167 ซอย25 กองรักษาการณ์ ตำบลปากน้ำ อำเภอเมือง จังหวัดสมุทรปราการ 10270</p>
+  <!-- USER BUYER ADDRESS -->
+  <div class="card-border-3-list bg-white mb-2">
+    <!-- USER BUYER ADDRESS NULL -->
+    <div *ngIf="userBuyerAddressList.length == 0" class="pt-3">
+      <p class="text-center text-danger mt-3 mb-3">ยังไม่ได้เพิ่มที่อยู่</p>
+    </div>
+    <!-- USER BUYER ADDRESS NOT NULL -->
+    <div *ngIf="userBuyerAddressList.length != 0">
+      <div *ngFor="let address of userBuyerAddressList; let i = index;">
+        <div class="mt-3 p-4" style="background-color: #F2F6FA; border-radius: 10px;">
+          <p class="mb-0">ที่อยู่ {{ i+1 }}</p>
+          <p class="mb-0">ชื่อ-นามสกุล : {{ address.value.name }} {{ address.value.lastName }}</p>
+          <p class="mb-0">บ้านเลขที่ : {{ address.value.number }}</p> 
+          <p class="mb-0">หมู่ที่ : {{ address.value.moo }}</p> 
+          <p class="mb-0">หมู่บ้าน / อาคาร / ชั้น : {{ address.value.village }}</p> 
+          <p class="mb-0">ตรอก / ซอย : {{ address.value.lane }}</p> 
+          <p class="mb-0">ถนน : {{ address.value.road }}</p>
+          <p class="mb-0">ตำบล : {{ address.value.subDistrict }}</p> 
+          <p class="mb-0">อำเภอ : {{ address.value.district }}</p> 
+          <p class="mb-0">จังหวัด : {{ address.value.province }}</p> 
+          <p class="mb-0">รหัสไปรษณีย์ : {{ address.value.postalCode }}</p> 
+          <p class="mb-0">หมายเลขโทรศัพท์ : {{ address.value.phone }}</p> 
+        </div>
+      </div>
+    </div>
   </div>
 
+  <!-- USER BUYER ABIDMORECOIN -->
   <div class="card-border-3 bg-white mb-2">
-    <!--  -->
+    <!-- USER BUYER ABIDMORECOIN NULL -->
+    <div *ngIf="userBuyer.abidmoreCoin == undefined">
+      <p class="text-center text-danger mt-3 mb-3">ไม่มี A Bid More Coin</p>
+    </div>
+    <!-- USER BUYER ABIDMORECOIN NOT NULL -->
+    <div *ngIf="userBuyer.abidmoreCoin != undefined">
+      <p class="mt-2 mb-0">A Bid More Coin</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.abidmoreCoin.amountCoin }}</p>
+      <p class="mt-2 mb-0">รหัสชำระอ้างอิง</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.abidmoreCoin.paymentUID }}</p>
+      <p class="mt-2 mb-0">วันที่ชะระ</p>
+      <p class="mb-0 productDataText">• {{ userBuyer.abidmoreCoin.updateAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    </div>
+  </div>
+
+  <!-- PRODUCT LIKE -->
+  <div class="card-border-3-list bg-white mb-2">
+    <div *ngIf="productLike.length == 0" class="pt-3">
+      <p class="text-center text-danger mt-3 mb-3">ไม่มีสินค้าที่กดถูกใจ</p>
+    </div>
+    <div *ngIf="productLike.length != 0">
+      <p class="mt-2 mb-0">สินค้าที่กดถูกใจ</p>
+      <div *ngFor="let like of productLike; let i = index;">
+        <div class="mt-3 p-4" style="background-color: #F2F6FA; border-radius: 10px;">
+          <div class="row">
+            <div class="col-auto">
+              {{ i+1 }}
+            </div>
+            <div class="col">
+              <p class="mb-0">รหัสสินค้า</p>
+              <p class="mb-0 productDataText">• {{ like.value.productKey }}</p>
+              <p class="mt-2 mb-0">รหัสร้านค้า</p>
+              <p class="mb-0 productDataText">• {{ like.value.sellerUID }}</p>
+              <p class="mt-2 mb-0">วันที่กดถูกใจ</p>
+              <p class="mb-0 productDataText">• {{ like.value.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOLLOW SELLER -->
+  <div class="card-border-3-list bg-white mb-2">
+    <div *ngIf="followSeller.length == 0" class="pt-3">
+      <p class="text-center text-danger mt-3 mb-3">ไม่มีร้านค้าที่ติดตาม</p>
+    </div>
+    <div *ngIf="followSeller.length != 0">
+      <p class="mt-2 mb-0">ร้านค้าที่ติดตาม</p>
+      <div *ngFor="let follow of followSeller; let i = index;">
+        <div class="mt-3 p-4" style="background-color: #F2F6FA; border-radius: 10px;">
+          <div class="row">
+            <div class="col-auto">
+              {{ i+1 }}
+            </div>
+            <div class="col">
+              <p class="mb-0">รหัสร้านค้า</p>
+              <p class="mb-0 productDataText">• {{ follow.value.sellerUID }}</p>
+              <p class="mt-2 mb-0">วันที่กดติดตาม</p>
+              <p class="mb-0 productDataText">• {{ follow.value.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER -->
+  <!-- <div class="card-border-3 bg-white mb-2">
+    <div *ngIf="order.length == 0">
+      <p class="text-center mt-3 mb-3">ไม่มีคำสั่งซื้อ</p>
+    </div>
+    <div *ngIf="order.length != 0">
+      <p class="mb-2">คำสั่งซื้อ (ที่ต้องชำระ)</p>
+      <div *ngFor="let order of order; let i = index;">
+        <div *ngIf="order.value.status == 'cart'" class="row">
+          <div class="col-auto">
+            {{ i+1 }}
+          </div>
+          <div class="col">
+            <p class="mb-0">รหัสข้อมูล</p>
+            <p class="mb-0 productDataText">• {{ order.key }}</p>
+            <p class="mb-0">รหัสคำสั่งซื้อ</p>
+            <p class="mb-0 productDataText">• {{ order.value.orderNo }}</p>
+            <p class="mb-0">รหัสสินค้า</p>
+            <p class="mb-0 productDataText">• {{ order.value.productKey }}</p>
+            <p class="mb-0">ชื่อสินค้า</p>
+            <p class="mb-0 productDataText">• {{ order.value.productName }}</p>
+            <p class="mb-0">ตัวเลือกสินค้า</p>
+            <p class="mb-0 productDataText">• ตัวเลือก: {{ order.value.optionName }} | ตัวเลือกย่อย: {{ order.value.subOption }} | จำนวน: {{ order.value.number }}</p>
+            <p class="mb-0">ราคาสินค้า</p>
+            <p class="mb-0 productDataText">• {{ order.value.priceOfProduct }}</p>
+            <p class="mb-0">ตัวอย่างภาพสินค้า</p>
+            <img class="img-fluid" style="width: 200px; border-radius: 13px; border: 0.5px solid #373E48;" src="{{ order.value.imgProduct[0].imgUrl }}">
+
+            <p class="mb-0">รหัสร้านค้า</p>
+            <p class="mb-0 productDataText">• {{ order.value.sellerUID }}</p>
+            <p class="mb-0">ชื่อร้านค้า</p>
+            <p class="mb-0 productDataText">• {{ order.value.shopName }}</p>
+            <p class="mt-2 mb-0">วันที่สั่งซื้อ</p>
+            <p class="mb-0 productDataText">• {{ order.value.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div> -->
+
+  <!-- <div class="card-border-3 bg-white mb-2">
     <p class="mt-2 mb-0">บัตร 1</p>
     <p class="mb-0 productDataText">• **** **** **** 7612</p>
     <p class="mb-0 productDataText">• KBANK (เดบิต)</p>
-    <!--  -->
     <p class="mt-2 mb-0">บัตร 2</p>
     <p class="mb-0 productDataText">• **** **** **** 7612</p>
     <p class="mb-0 productDataText">• KBANK (เดบิต)</p>
-    <!--  -->
     <p class="mt-2 mb-0">บัตร 3</p>
     <p class="mb-0 productDataText">• **** **** **** 7612</p>
     <p class="mb-0 productDataText">• KBANK (เดบิต)</p>
-  </div>
-<!-- </div> -->
+  </div> -->
+</div>
 
 <!-- MODAL POPUP BAN -->
 <div class="modal fade" id="ModalPopupBan" role="dialog" aria-hidden="true">
@@ -99,13 +245,14 @@
         <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการระงับบัญชีผู้ซื้อ</p>
         <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
           style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-          placeholder="เหตุผลการระงับบัญชีผู้ซื้อ"></textarea>
+          placeholder="เหตุผลการระงับบัญชีผู้ซื้อ"
+          (keyup)="banUserBuyerInput($event)"></textarea>
       </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
-            [routerLink]="['/buyyer-account-list']">ตกลง</button>
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!banUserBuyerCheck"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" 
+            data-dismiss="modal" (click)="banUserBuyer(reasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">

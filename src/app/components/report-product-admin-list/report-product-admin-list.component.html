@@ -1,46 +1,56 @@
 <!-- TOP MENU -->
-  <!-- TOP MENU -->
-  <div class="row">
-    <div class="col-auto router" [routerLink]="['/report-product-list']">
-      <p>แจ้งรายงานสินค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/report-product-admin-list']">
-      <p>ระงับสินค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/report-product-history-list']">
-      <p>ประวัติสินค้า</p>
-    </div>
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" [routerLink]="['/report-product-list']">
+    <p>แจ้งรายงานสินค้า</p>
   </div>
-  <!-- END TOP MENU -->
+  <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/report-product-admin-list']">
+    <p>ระงับสินค้า</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/report-product-history-list']">
+    <p>ประวัติสินค้า</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
 
 <!-- CONTENT -->
-<!-- <div class="container"> -->
-  <div class="row">
-    <div class="col pr-0">
-      <input type="text" class="form-control" style="border-radius: 50px;" placeholder="ค้นหาด้วยรหัสสินค้า">
-    </div>
-    <div class="col-auto">
-      <button type="button" class="btn text-placeholder text-center btn-copy">ค้นหา</button>
-    </div>
+<div class="row">
+  <div class="col pr-0">
+    <input type="text" class="form-control" style="border-radius: 50px;" #searchInput
+      (keyup)="searchProductInput($event)" (keyup.enter)="searchProduct(searchInput.value)"
+      placeholder="ค้นหาจากรหัสสินค้า/ชื่อสินค้า">
   </div>
-  
+  <div class="col-auto">
+    <button type="button" class="btn text-placeholder text-center btn-copy"
+      (click)="searchProduct(searchInput.value)">ค้นหา</button>
+  </div>
+</div>
+
+<div *ngIf="productList.length == 0 && !noMatchData" class="text-center"
+  style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem;">เพิ่มรหัสสินค้า/ชื่อสินค้าในช่องค้นหา</p>
+</div>
+<div *ngIf="noMatchData" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem; color: #F26E24;">ไม่พบรหัสสินค้า/ชื่อสินค้าที่ตรงกัน</p>
+</div>
+
+<div class="container">
   <div class="row">
-    <!-- LIST 1 -->
-    <div class="col-12 mt-3 router" [routerLink]="['/report-product-admin-detail']">
+    <!-- PRODUCT LIST -->
+    <div class="col-12 p-0 mt-3" *ngFor="let data of productList" (click)="productDetail(data.key)" style="cursor: pointer;">
       <div class="card-border-3 bg-white">
         <div class="row row-sm_">
           <div class="col-auto col-sm_ align-self-center">
-            <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
+            <img style="width: 70px; height: 70px; border-radius: 5px;" src="{{ data.value.imgProduct[0].imgUrl }}">
           </div>
           <div class="col col-sm_ align-self-center">
-            <p class="mb-0 text-dark">HappyShop</p>
-            <p class="mb-0 text-dark">รหัสร้านค้า : AAA9F8G4B800NK</p>
-            <p class="mb-0 text-dark">รหัสสินค้า : #AA850328298</p>
-            <p class="mb-0 text-dark">วันที่ : 20/04/2020</p>
+            <!-- <p class="mb-0 text-dark">ชื่อร้านค้า : SHOP NAME</p> -->
+            <p class="mb-0 text-dark">รหัสร้านค้า : {{ data.value.sellerUID }}</p>
+            <p class="mb-0 text-dark">รหัสสินค้า : {{ data.key }}</p>
+            <p class="mb-0 text-dark">วันที่ : {{ data.value.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
           </div>
         </div>
       </div>
     </div>
   </div>
-<!-- </div> -->
-
+</div>

@@ -6,62 +6,32 @@
   <div class="col-auto pl-1 router" [routerLink]="['/return-product-sendback-wrong-list']">
     <p>ร้านค้าแจ้งการส่งของกลับผิดพลาด</p>
   </div>
-  <div class="col-auto pl-top-menu-sm router" [routerLink]="['/return-product-respond-more-seven-days-list']">
+  <div class="col-auto pl-top-menu-sm router disabled" [routerLink]="['/return-product-respond-more-seven-days-list']">
     <p>ร้านค้าไม่ตอบรับเกิน 7 วัน</p>
   </div>
 </div>
 <!-- END TOP MENU -->
 
 <!-- CONTENT -->
-<!-- <div class="container"> -->
-  <div class="row">
-    <!-- LIST 1 -->
-    <div class="col-12 mt-3 router" [routerLink]="['/return-product-detail']">
-      <div class="card-border-3 bg-white">
-        <div class="row row-sm_">
-          <div class="col-auto col-sm_ pr-0 align-self-center">
-            <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
-          </div>
-          <div class="col col-sm_ align-self-center">
-            <p class="mb-0 text-dark">HappyShop</p>
-            <p class="mb-0 text-dark">รหัสร้านค้า : D679F8G4B800NK</p>
-            <p class="mb-0 text-dark">รหัสสินค้า : #AB850328298</p>
-            <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
-          </div>
+<!-- NO CONTENT -->
+<div *ngIf="showContent && argueRequestList.length == 0" class="text-center" style="padding-top: 56px;">
+  <p class="mb-0 text-danger" style="font-size: .8rem;">ไม่มีรายการแจ้งโต้แย้งการคืนสินค้า</p>
+</div>
+<!-- ARGUEREPORT LIST -->
+<div class="row" *ngIf="showContent">
+  <div class="col-12 mt-3 router" *ngFor="let data of argueRequestList">
+    <div class="card-border-3 bg-white" (click)="gotoArgueRequestDes(data.key)">
+      <div class="row row-sm_">
+        <div class="col-auto col-sm_ pr-0 align-self-center">
+          <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
         </div>
-      </div>
-    </div>
-    <!-- LIST 2 -->
-    <div class="col-12 mt-3 router" [routerLink]="['/return-product-detail']">
-      <div class="card-border-3 bg-white">
-        <div class="row row-sm_">
-          <div class="col-auto col-sm_ pr-0 align-self-center">
-            <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
-          </div>
-          <div class="col col-sm_ align-self-center">
-            <p class="mb-0 text-dark">HappyShop</p>
-            <p class="mb-0 text-dark">รหัสร้านค้า : D679F8G4B800NK</p>
-            <p class="mb-0 text-dark">รหัสสินค้า : #AB850328298</p>
-            <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- LIST 3 -->
-    <div class="col-12 mt-3 router" [routerLink]="['/return-product-detail']">
-      <div class="card-border-3 bg-white">
-        <div class="row row-sm_">
-          <div class="col-auto col-sm_ pr-0 align-self-center">
-            <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
-          </div>
-          <div class="col col-sm_ align-self-center">
-            <p class="mb-0 text-dark">HappyShop</p>
-            <p class="mb-0 text-dark">รหัสร้านค้า : D679F8G4B800NK</p>
-            <p class="mb-0 text-dark">รหัสสินค้า : #AB850328298</p>
-            <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
-          </div>
+        <div class="col col-sm_ align-self-center">
+          <p class="mb-0 text-dark">ชื่อร้านค้า : {{ data.value.shopName }}</p>
+          <p class="mb-0 text-dark">รหัสร้านค้า : {{ data.value.sellerUID }}</p>
+          <p class="mb-0 text-dark">รหัสสินค้า : {{ data.value.productKey }}</p>
+          <p class="mb-0 text-dark">วันที่ : {{ data.value.returnProduct.sellerArgueAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
         </div>
       </div>
     </div>
   </div>
-<!-- </div> -->
+</div>

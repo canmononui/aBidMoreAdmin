@@ -71,6 +71,19 @@
   background-color: #F2F6FA;
 }
 
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.star-color {
+  color: #FFA101;
+}
+
+.border-radius-10 {
+  border-radius: 10px;
+}
+
 /* Small devices (landscape phones, 576px and up) */
 @media only screen and (max-width: 480px) {
   .container-bg-color {

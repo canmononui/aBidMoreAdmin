@@ -7,7 +7,7 @@
     <div class="col-auto pl-1 router" style="color: #FFA101;" [routerLink]="['/percentage-cancel-order']">
       <p>เปอร์เซ็นต์ยกเลิกสินค้า</p>
     </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/percentage-deposit-seller-support-buy-product']">
+    <div class="col-auto pl-1 router disabled" [routerLink]="['/percentage-deposit-seller-support-buy-product']">
       <p>เติมเงินซื้อการสนับสนุนสินค้า</p>
     </div>
   </div>
@@ -16,18 +16,18 @@
   <!--  -->
   <div class="input-style mt-2">
     <p class="mb-0 text-input">เปอร์เซ็นต์ยกเลิกสินค้าที่ต้องการเปลี่ยนแปลง</p>
-    <input maxlength="100" class="form-control border-0 pl-0 text-placeholder bg-input" #perNumber_ placeholder="ตัวเลข (%)">
+    <input maxlength="100" class="form-control border-0 pl-0 text-placeholder bg-input" #perNumber_ [(ngModel)]="percenInput" placeholder="ตัวเลข (%)">
   </div>
   <!--  -->
   <div class="input-style mt-2">
     <p class="mb-0 text-input">รหัสร้านค้า (สูงสุด 200 ร้าน คั่นด้วยเครื่องหมาย ",")</p>
     <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
-    style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+    style="box-shadow: none; background-color: #F2F6FA;" #shopUIDInput_ [(ngModel)]="uidInput"
     placeholder="S45g789p1R2PP,Qp48r55i7x99l,S45g789p1R2PP,Qp48r55i7x99l,S45g789p1R2PP"></textarea>
   </div>
   <!-- BUTTON -->
   <button type="button" class="btn mt-2 text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupSave"
-    data-backdrop="static" data-keyboard="false">บันทึกการเปลี่ยนแปลง</button>
+    data-backdrop="static" data-keyboard="false" (click)="checkUpdate(perNumber_.value, shopUIDInput_.value)">บันทึกการเปลี่ยนแปลง</button>
 <!-- </div> -->
 
 
@@ -37,12 +37,12 @@
     <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
       <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
       <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
-      <p class="text-center">ยืนยันการเปลี่ยนแปลง ?</p>
+      <p class="text-center">{{ errorText }}</p>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
           <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
             style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal">ตกลง</button>
+            data-dismiss="modal" (click)="updatePercen()">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">

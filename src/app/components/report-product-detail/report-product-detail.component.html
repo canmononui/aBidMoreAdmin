@@ -1,28 +1,29 @@
 <!-- <div class="pl-2 pr-2"> -->
-  <!-- TOP MENU -->
-  <div class="row">
-    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/report-product-list']">
-      <p>แจ้งรายงานสินค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/report-product-admin-list']">
-      <p>ระงับสินค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/report-product-history-list']">
-      <p>ประวัติสินค้า</p>
-    </div>
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/report-product-list']">
+    <p>แจ้งรายงานสินค้า</p>
   </div>
-  <!-- END TOP MENU -->
+  <div class="col-auto pl-1 router" [routerLink]="['/report-product-admin-list']">
+    <p>ระงับสินค้า</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/report-product-history-list']">
+    <p>ประวัติสินค้า</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
 
-  <!--  -->
-  <div class="card-border-color mb-2">
+<!--  -->
+<div *ngIf="showContent">
+  <div class="card-border-color mb-2" *ngFor="let report of buyerReport">
     <div class="row row-sm_">
       <div class="col-auto col-sm_ align-self-center">
-        <img style="width: 70px; height: 70px;" src="./assets/img/store-icon.png">
+        <img class="rounded-circle" style="width: 70px; height: 70px;" src="{{ report.value.profileImg.imgUrl }}">
       </div>
       <div class="col pl-0 col-sm_ align-self-center">
-        <p class="mb-0 text-dark">ผู้รายงาน : canmononui</p>
-        <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
-        <p class="mb-0 text-dark">วันที่ : 17/04/2020</p>
+        <p class="mb-0 text-dark">ผู้รายงาน : {{ report.value.displayName }}</p>
+        <p class="mb-0 text-dark">รหัสผู้ใช้งาน : {{ report.value.userReport }}</p>
+        <p class="mb-0 text-dark">วันที่ : {{ report.value.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
       </div>
     </div>
   </div>
@@ -31,104 +32,154 @@
     <!--  -->
     <p class="mt-2 mb-0">รหัสร้านค้า</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• D679F8G4B800NK</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ report.sellerUID }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyShopKey">คัดลอก</button>
+          data-target="#ModalPopupCopyShopKey" (click)="copySellerUID()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">รหัสสินค้า</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• #AB1863459873</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ report.productKey }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyProductKey">คัดลอก</button>
+          data-target="#ModalPopupCopyProductKey" (click)="copyproductKey()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อร้านค้า</p>
-    <p class="mb-0 productDataText">• HappyShop</p>
+    <p class="mb-0 productDataText">• {{ report.shopName }}</p>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อสินค้า</p>
-    <p class="mb-0 productDataText">• ชื่อสินค้า</p>
+    <p class="mb-0 productDataText">• {{ productDes.name }}</p>
     <!--  -->
     <p class="mt-2 mb-0">รายละเอียดสินค้า</p>
-    <p class="mb-0 productDataText">• Adidas NMD R1 เป็นรองเท้าสำหรับใส่วิ่งมากพอๆ กับที่มันเป็นรองเท้าคู่สวยที่ใส่ไปได้ในทุกที่ และตอบรับไลฟ์สไตล์ของผู้สวมใส่ได้อย่าง
-      ลงตัว เพราะรองเท้าคู่นี้เกิดขึ้นจากความกล้าในการผสมผสานหลากหลายองค์ประกอบเข้าด้วยกัน ทั้งในเรื่องของรูปทรง องศา 
-      และวัสดุที่ใช้ เรื่อยไปจนถึงการเลือกสีสันที่ตัดกัน การออกแบบเกิดขึ้นอย่างไม่หวั่นเกรงสิ่งใด ด้วยการประกอบส่วนบนของรองเท้าให้ดู
-      โมเดิร์น ในโครงร่างที่ดูเหนือจริง พร้อมทั้งใส่รายละเอียดจากแนวทางการออกแบบของอาดิดาสที่มีมาในอดีตเข้าไปจนได้รองเท้าที่มาพร้อม
-      คอนเซ็ปต์การออกแบบที่เปี่ยมด้วยเอกลักษณ์ พื้นรองเท้าชั้นกลาง (midsole) ถูกยกระดับขึ้นด้วยเทคโนโลยี BOOST ซึ่งบีบอัดเม็ด EVA 
-      จำนวนมากอยู่ภายในจนทำให้พื้นรองเท้ามีความคงทน ต้านทานแรง และตอบสนองได้อย่างฉับไว ในขณะที่ส่วนบนของรองเท้า 
-      อาดิดาสเลือกใช้เทคโนโลยี Primeknit ที่ช่วยยกระดับความยืดหยุ่น ความมั่นคง และความแข็งแกร่งของรองเท้าขึ้นอีกขั้น</p>
+    <div class="productDataText" [innerHTML]="productDes.productDescription"></div>
     <!--  -->
     <p class="mt-2 mb-0">จำนวนสินค้า</p>
-    <div class="row">
-      <div class="col-auto">
-        <p class="mb-0 productDataText">• ดำ</p>
-        <p class="mb-0 productDataText">• แดง</p>
-        <p class="mb-0 productDataText">• เขียว</p>
-        <p class="mb-0 productDataText">• เหลือง</p>
-      </div>
-      <div class="col-auto">
-        <p class="mb-0 productDataText">จำนวน 100</p>
-        <p class="mb-0 productDataText">จำนวน 100</p>
-        <p class="mb-0 productDataText">จำนวน 100</p>
-        <p class="mb-0 productDataText">จำนวน 100</p>
+    <div *ngFor="let _dataOp of productDes.productOption; let i = index;">
+      <p class="mb-0 productDataText">• ตัวเลือก {{ i+1 }} ({{ _dataOp.optionName }})</p>
+  
+      <div class="row ml-2" *ngFor="let _dataSub of _dataOp.subOption">
+        <div class="col-6 col-md-4 col-xl-4">
+          <p class="mb-0 productDataText">• {{ _dataSub.subOption }}</p>
+        </div>
+        <div class="col-4 col-md-4 col-xl-4">
+          <a class="mb-0 productDataText mr-2" style="text-decoration: none;">จำนวน</a>
+          <a class="mb-0 productDataText" style="text-decoration: none;">{{ _dataSub.subOptionNumber }}</a>
+        </div>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">ภาพสินค้า</p>
     <div class="row row-img-m" style="margin-top: -8px;">
-      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
-        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/bag.png" class="img-fluid" style="cursor: pointer; border-radius: 10px;">
-      </div>
-      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
-        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/bag.png" class="img-fluid" style="cursor: pointer; border-radius: 10px;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2" *ngFor="let _dataImg of productDes.imgProduct;">
+        <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)" src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
       </div>
     </div>
-    <!--  -->
-    <p class="mt-2 mb-0">ราคาเริ่มประมูล</p>
-    <p class="mb-0 productDataText">• 0 บาท</p>
-    <!--  -->
-    <p class="mt-2 mb-0">ราคาบิด</p>
-    <p class="mb-0 productDataText">• 50 บาท/บิด</p>
-    <!--  -->
-    <p class="mt-2 mb-0">ราคา AutoWin</p>
-    <p class="mb-0 productDataText">• 15,000 บาท</p>
-    <!--  -->
-    <p class="mt-2 mb-0">วันที่เริ่มประมูล</p>
-    <p class="mb-0 productDataText">• 02/05/2020 12:00</p>
-    <!--  -->
+    <!-- AUCTION -->
+    <div *ngIf="productDes.salesType == 'auction'">
+      <p class="mt-2 mb-0">ราคาเริ่มประมูล</p>
+      <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.priceData.priceStart }}</a>
+      <a class="mb-0 productDataText" style="text-decoration: none;">บาท</a>
+      <!-- ! -->
+      <p class="mt-2 mb-0">ราคาบิด</p>
+      <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.priceData.priceBid }}</a>
+      <a class="mb-0 productDataText" style="text-decoration: none;">บาท/บิด</a>
+      <!-- ! -->
+      <p class="mt-2 mb-0">ราคา AutoWin</p>
+      <div *ngIf="productDes.priceData.priceAutoWin == 0">
+        <a class="mb-0 productDataText" style="text-decoration: none;">ไม่ได้ระบุราคา AutoWin ลูกค้าจะไม่สามารถซื้อสินค้าในราคา AutoWin ได้</a>
+      </div>
+      <div *ngIf="productDes.priceData.priceAutoWin != 0">
+        <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.priceData.priceAutoWin }}</a>
+        <a class="mb-0 productDataText" style="text-decoration: none;">บาท</a>
+      </div>
+      <!-- ! -->
+      <p class="mt-2 mb-0">วันที่เริ่มประมูล</p>
+      <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.dateTime.dateTime.seconds*1000 | date: 'd/M/yyyy' }}</a>
+      <a class="mb-0 productDataText" style="text-decoration: none;">{{ productDes.dateTime.dateTime.seconds*1000 | date: "HH:mm:ss" }}</a>
+      <!-- ! -->
+      <p class="mt-2 mb-0">ระยะเวลาประมูล</p>
+      <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.dateTime.timeBidAutoComMin }}</a>
+      <a class="mb-0 productDataText" style="text-decoration: none;">นาที</a>
+    </div>
+    <!-- FORSALE -->
+    <div *ngIf="productDes.salesType == 'setSellingPrice'">
+      <p class="mt-2 mb-0">ตั้งราคาขาย</p>
+      <a class="mb-0 productDataText mr-2" style="text-decoration: none;">• {{ productDes.priceData.priceProduct }}</a>
+      <a class="mb-0 productDataText" style="text-decoration: none;">บาท</a>
+    </div>
+    <!-- DELIVERY -->
     <p class="mt-2 mb-0">รายละเอียดขนส่ง</p>
     <div class="row">
-      <div class="col-auto">
-        <p class="mb-0 productDataText">• Kerry Express ด่วนพิเศษ</p>
-        <p class="mb-0 productDataText">• ไปรษณีย์ไทย ด่วนพิเศษ</p>
-      </div>
-      <div class="col-auto">
-        <p class="mb-0 productDataText">ราคาที่ระบุ ฿100</p>
-        <p class="mb-0 productDataText">ราคาที่ระบุ ฿100</p>
+      <div class="col-12" *ngFor="let _dataDeli of productDes.priceDelivery">
+        <div *ngIf="_dataDeli.deliveryName != 'handPickUp'">
+          <div class="row">
+            <div class="col-6 col-md-4 col-xl-4">
+              <p class="mb-0 productDataText">• {{ _dataDeli.deliveryName }}</p>
+            </div>
+            <div class="col-4 col-md-4 col-xl-4">
+              <a class="mb-0 productDataText mr-2" style="text-decoration: none;">{{ _dataDeli.priceDeliveryInput }}</a>
+              <a class="mb-0 productDataText" style="text-decoration: none;">บาท</a>
+            </div>
+          </div>
+          <p *ngIf="productDes.salesType == 'auction'" class="mb-0 productDataText">• รองรับการเก็บเงินปลายทาง (ราคายังไม่รวมค่าบริการเรียกเก็บเงินปลายทาง)</p>
+          <p *ngIf="productDes.salesType == 'setSellingPrice'" class="mb-0 productDataText">• รองรับการเก็บเงินปลายทาง (ราคารวมค่าบริการเรียกเก็บเงินปลายทางแล้ว)</p>
+        </div>
+        <div *ngIf="_dataDeli.deliveryName == 'handPickUp'">
+          <div class="row">
+            <div class="col-12">
+              <p class="mb-0 productDataText">• {{ _dataDeli.deliveryName }}</p>
+            </div>
+            <div class="col-12">
+              <a class="mb-0 productDataText mr-2" style="text-decoration: none;">ประเทศ : {{ _dataDeli.country }}</a>
+            </div>
+            <div class="col-12">
+              <a class="mb-0 productDataText mr-2" style="text-decoration: none;">จังหวัด : {{ _dataDeli.province }}</a>
+            </div>
+            <div class="col-12">
+              <a class="mb-0 productDataText mr-2" style="text-decoration: none;">รายละเอียด : {{ _dataDeli.description }}</a>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <!-- BUTTON -->
     <div class="row row-sm_ mt-4">
       <div class="col col-sm_">
-        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal" data-target="#ModalPopupNotApprove"
-        data-backdrop="static" data-keyboard="false">ไม่ระงับสินค้า</button>
+        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal"
+          data-target="#ModalPopupNotApprove" data-backdrop="static" data-keyboard="false">ไม่ระงับสินค้า</button>
       </div>
       <div class="col col-sm_">
-        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupApprove"
-        data-backdrop="static" data-keyboard="false">ระงับสินค้า</button>
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal"
+          data-target="#ModalPopupApprove" data-backdrop="static" data-keyboard="false">ระงับสินค้า</button>
       </div>
     </div>
   </div>
-<!-- </div> -->
+</div>
 
+<!-- MODAL POPUP SHOW IMG -->
+<div class="modal fade" id="ModalPopupImg" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img src="{{ imgUrl }}" class="img-fluid border-radius-10">
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- END MODAL POPUP SHOW IMG -->
 
 <!-- MODAL POPUP NOT APPROVE -->
 <div class="modal fade" id="ModalPopupNotApprove" role="dialog" aria-hidden="true">
@@ -140,8 +191,8 @@
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
           <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/report-product-list']">ตกลง</button>
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
+            (click)="notBanProduct()">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -154,18 +205,24 @@
 </div>
 <!-- END MODAL POPUP NOT APPROVE -->
 
-<!-- MODAL POPUP NOT APPROVE -->
+<!-- MODAL POPUP APPROVE -->
 <div class="modal fade" id="ModalPopupApprove" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
       <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
       <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
-      <p class="text-center">ต้องการระงับสินค้า ?</p>
+      <div class="input-style">
+        <p class="mb-0 text-input">ต้องการระงับสินค้า ?</p>
+        <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
+        style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+        placeholder="เหตุผลการระงับร้านค้า"
+        (keyup)="banProductInput($event)"></textarea>
+      </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/report-product-list']">ตกลง</button>
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!banUserSellerCheck"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
+            (click)="banProduct(reasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -176,7 +233,7 @@
     </div>
   </div>
 </div>
-<!-- END MODAL POPUP NOT APPROVE -->
+<!-- END MODAL POPUP APPROVE -->
 
 <!-- MODAL POPUP COPY MAIL -->
 <div class="modal fade" id="ModalPopupCopyProductKey" role="dialog" aria-hidden="true">

@@ -1,95 +1,142 @@
-<!-- <div class="pl-2 pr-2"> -->
-  <!-- TOP MENU -->
-  <div class="row">
-    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/seller-account-approve-list']">
-      <p>อนุมัติร้านค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/seller-bank-approve-list']">
-      <p>อนุมัติบัญชีร้านค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/seller-search-list']">
-      <p>ข้อมูลร้านค้า</p>
-    </div>
-    <div class="col-auto pl-top-menu-sm router" [routerLink]="['/seller-report-list']">
-      <p>แจ้งปัญหา</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/seller-abidmore-gobal']">
-      <p>aBidMore Gobal</p>
-    </div>
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/seller-account-approve-list']">
+    <p>อนุมัติร้านค้า</p>
   </div>
-  <!-- END TOP MENU -->
+  <div class="col-auto pl-1 router disabled" [routerLink]="['/seller-bank-approve-list']">
+    <p>อนุมัติบัญชีร้านค้า</p>
+  </div>
+  <div class="col-auto pl-1 router" [routerLink]="['/seller-search-list']">
+    <p>ข้อมูลร้านค้า</p>
+  </div>
+  <div class="col-auto pl-top-menu-sm router" [routerLink]="['/seller-report-list']">
+    <p>แจ้งปัญหา</p>
+  </div>
+  <div class="col-auto pl-1 router disabled" [routerLink]="['/seller-abidmore-gobal']">
+    <p>aBidMore Gobal</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
 
+<div *ngIf="showContent">
   <!-- CONTENT -->
   <div class="card-border-3 bg-white mb-2">
     <!--  -->
     <p class="mt-2 mb-0">วันที่สมัคร</p>
-    <p class="mb-0 productDataText">• 17/04/2020</p>
+    <p class="mb-0 productDataText">• {{ userSeller.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
     <!--  -->
     <p class="mt-2 mb-0">Email</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• suthad@gmail.com</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ userSeller.email }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyMail">คัดลอก</button>
+          data-target="#ModalPopupCopyMail" (click)="copyMail()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">รหัสร้านค้า</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• D679F8G4B800NK</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ userSeller.uid }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
-          data-target="#ModalPopupCopyShopKey">คัดลอก</button>
+          data-target="#ModalPopupCopyShopKey" (click)="copyUID()">คัดลอก</button>
       </div>
     </div>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อร้านค้า</p>
-    <p class="mb-0 productDataText">• HappyShop</p>
+    <p class="mb-0 productDataText">• {{ userSeller.shopName }}</p>
     <!--  -->
     <p class="mt-2 mb-0">สินค้าที่ลงขาย (ประเภท,ชื่อ)</p>
-    <p class="mb-0 productDataText">• เสื้อผ้า</p>
+    <p class="mb-0 productDataText">• {{ userSeller.shopDescription }}</p>
     <!--  -->
     <p class="mt-2 mb-0">ชื่อจริง-นามสกุล</p>
-    <p class="mb-0 productDataText">• นายสุทัศน์ สุขจิต</p>
-    <!--  -->
-    <p class="mt-2 mb-0">บัญชีร้าน</p>
-    <p class="mb-0 productDataText">• เลขที่บัญชี : 554-0-31133-2</p>
-    <p class="mb-0 productDataText">• ธนาคาร : ธ.กรุงเทพ</p>
-    <p class="mb-0 productDataText">• เลขที่สาขา : 9999</p>
-    <p class="mb-0 productDataText">• ชื่อบัญชี : นายฉัตรมงคล ศิลธรรม</p>
-    <p class="mb-0 productDataText">• ประเภทบัญชี : บุคคลธรรมดา</p>
-    <!--  -->
-    <img class="img mt-0" src="./assets/img/bookbank.png">
-    <!--  -->
-    <p class="mt-2 mb-0">ที่อยู่</p>
-    <p class="mb-0 productDataText">• 167 ซอย25 กองรักษาการณ์ ตำบลปากน้ำ อำเภอเมือง จังหวัดสมุทรปราการ 10270</p>
+    <p class="mb-0 productDataText">• {{ userSeller.name }} {{ userSeller.lastName }}</p>
     <!--  -->
     <p class="mt-2 mb-0">หมายเลขโทรศัพท์</p>
     <p class="mb-0 productDataText">• 0649355415</p>
     <!--  -->
-    <p class="mt-2 mb-0">เอกสารบัตรประชาชน</p>
-    <img class="img mt-0" src="./assets/img/TRKSET2C-12.jpg">
+    <p class="mt-2 mb-0">บัญชีร้าน</p>
+    <p class="mb-0 productDataText">• เลขที่บัญชี : {{ userSeller.bookbank.bankNumber }}</p>
+    <p class="mb-0 productDataText">• ธนาคาร : {{ userSeller.bookbank.bankNameTH }}</p>
+    <p class="mb-0 productDataText">• เลขที่สาขา : {{ userSeller.bookbank.bankBranch }}</p>
+    <p class="mb-0 productDataText">• ชื่อบัญชี : {{ userSeller.bookbank.accountName }}</p>
+    <!-- <p class="mb-0 productDataText">• ประเภทบัญชี : บุคคลธรรมดา</p> -->
+    <!--  -->
+    <p class="mt-2 mb-0">ที่อยู่</p>
+    <p class="mb-0 productDataText">ชื่อ-นามสกุล : {{ userSeller.shopAddress.name }} {{ userSeller.shopAddress.lastName
+      }}</p>
+    <p class="mb-0 productDataText">บ้านเลขที่ : {{ userSeller.shopAddress.number }}</p>
+    <p class="mb-0 productDataText">หมู่ที่ : {{ userSeller.shopAddress.moo }}</p>
+    <p class="mb-0 productDataText">หมู่บ้าน / อาคาร / ชั้น : {{ userSeller.shopAddress.village }}</p>
+    <p class="mb-0 productDataText">ตรอก / ซอย : {{ userSeller.shopAddress.lane }}</p>
+    <p class="mb-0 productDataText">ถนน : {{ userSeller.shopAddress.road }}</p>
+    <p class="mb-0 productDataText">ตำบล : {{ userSeller.shopAddress.subDistrict }}</p>
+    <p class="mb-0 productDataText">อำเภอ : {{ userSeller.shopAddress.district }}</p>
+    <p class="mb-0 productDataText">จังหวัด : {{ userSeller.shopAddress.province }}</p>
+    <p class="mb-0 productDataText">รหัสไปรษณีย์ : {{ userSeller.shopAddress.postalCode }}</p>
+    <p class="mb-0 productDataText">หมายเลขโทรศัพท์ : {{ userSeller.shopAddress.phone }}</p>
+    <!-- ID CARD INDIVIDUAL -->
+    <p *ngIf="userSeller.shopType == 'Individual' && fileItems.idCard != null" class="mt-2 mb-0">เอกสารบัตรประชาชน</p>
+    <img class="img mt-0" src="{{ fileItems.idCard }}">
+    <!-- ID CARD CORPORATION -->
+    <div *ngIf="userSeller.shopType == 'Corporation' && fileItems.idCard != null">
+      <p class="mt-2 mb-0">เอกสารบัตรประชาชน</p>
+      <div class="row row-img-m">
+        <div class="col-6 col-md-6 col-lg-3 col-img-p mt-2" *ngFor="let data of fileItems.idCard">
+          <img src="{{ data.idCardCorporation_urlFile }}" class="img-fluid mt-1" style="border-radius: 10px;">
+        </div>
+      </div>
+    </div>
+    <!-- HOUSE REGIS + DBD FIVE -->
+    <div *ngIf="userSeller.shopType == 'Individual'" class="mt-2">
+      <p class="mb-0">ทะเบียนบ้าน</p>
+      <img class="img-fluid mt-1 shop-file-m-w" src="{{ fileItems.houseRegis_dbdFive }}">
+    </div>
+    <div *ngIf="userSeller.shopType == 'Corporation'" class="mt-2">
+      <p class="mb-0">หนังสือรับรองนิติบุคคล</p>
+        <a class="row" style="color: #343a40; text-decoration: none;"
+        href="{{ fileItems.houseRegis_dbdFive }}"
+        target="_blank">
+        <div class="col-auto pr-0">
+          <button type="button" class="btn btn-warning btn-circle btn-lg text-white">
+            <i class="fa fa-file"></i>
+          </button>
+        </div>
+        <div class="col align-self-center">
+          <p class="mb-0">หนังสือรับรองนิติบุคคล</p>
+        </div>
+      </a>
+    </div>
+    <!-- BOOK BANK -->
+    <div *ngIf="fileItems.bookBank != null" class="mt-2">
+      <p class="mb-2">หน้าสมุดบัญชี</p>
+      <img class="img-fluid mt-1 shop-file-m-w" src="{{ fileItems.bookBank }}">
+    </div>
+    <!-- VAT REGIS -->
+    <div *ngIf="fileItems.vatRegis != null" class="mt-2">
+      <p class="mb-2">ทะเบียนภาษีมูลค่าเพิ่ม</p>
+      <img class="img-fluid mt-1 shop-file-m-w" src="{{ fileItems.vatRegis }}">
+    </div>
     <!--  -->
     <p class="mt-2 mb-0">หมายเหตุ</p>
-    <p class="mb-0 productDataText">• หากข้อมูลไม่ถูกต้องหรือข้อมูลร้านค้าไม่ครบถ้วน โปรดติดต่อร้านค้าผ่าน Email
-      ที่ให้มาเพื่อติดต่อขอข้อมูลเพิ่มเติม</p>
+    <p class="mb-0 productDataText">• หากข้อมูลไม่ถูกต้องหรือข้อมูลร้านค้าไม่ครบถ้วน โปรดติดต่อร้านค้าผ่าน Email ที่ให้มาเพื่อติดต่อขอข้อมูลเพิ่มเติม</p>
     <!-- BUTTON -->
     <div class="row row-sm_ mt-4">
       <div class="col col-sm_">
-        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal" data-target="#ModalPopupNotApprove"
-        data-backdrop="static" data-keyboard="false">ไม่อนุมัติร้านค้า</button>
+        <button type="button" class="btn text-placeholder text-center btn-l-black" data-toggle="modal"
+          data-target="#ModalPopupNotApprove" data-backdrop="static" data-keyboard="false">ไม่อนุมัติร้านค้า</button>
       </div>
       <div class="col col-sm_">
-        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal" data-target="#ModalPopupApprove"
-        data-backdrop="static" data-keyboard="false">อนุมัติร้านค้า</button>
+        <button type="button" class="btn text-placeholder text-center btn-r-color" data-toggle="modal"
+          data-target="#ModalPopupApprove" data-backdrop="static" data-keyboard="false">อนุมัติร้านค้า</button>
       </div>
     </div>
   </div>
-<!-- </div> -->
+</div>
 
 <!-- MODAL POPUP NOT APPROVE -->
 <div class="modal fade" id="ModalPopupNotApprove" role="dialog" aria-hidden="true">
@@ -100,14 +147,14 @@
       <div class="input-style">
         <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการไม่อนุมัติร้านค้า</p>
         <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
-        style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-        placeholder="เหตุผลการไม่อนุมัติร้านค้า"></textarea>
+          style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+          placeholder="เหตุผลการไม่อนุมัติร้านค้า" (keyup)="banUserSellerInput($event)"></textarea>
       </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/seller-account-approve-list']">ตกลง</button>
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!banUserSellerCheck"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
+            (click)="notApproveUserSeller(reasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -120,7 +167,7 @@
 </div>
 <!-- END MODAL POPUP NOT APPROVE -->
 
-<!-- MODAL POPUP NOT APPROVE -->
+<!-- MODAL POPUP APPROVE -->
 <div class="modal fade" id="ModalPopupApprove" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
@@ -130,8 +177,8 @@
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
           <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal" [routerLink]="['/seller-account-approve-list']">ตกลง</button>
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
+            (click)="approveUserSeller()">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -142,7 +189,7 @@
     </div>
   </div>
 </div>
-<!-- END MODAL POPUP NOT APPROVE -->
+<!-- END MODAL POPUP APPROVE -->
 
 <!-- MODAL POPUP COPY MAIL -->
 <div class="modal fade" id="ModalPopupCopyMail" role="dialog" aria-hidden="true">

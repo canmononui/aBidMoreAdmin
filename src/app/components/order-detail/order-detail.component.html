@@ -1,0 +1,362 @@
+<div *ngIf="showContent">
+  <!-- ORDER -->
+  <div class="card-border-3 bg-white mb-2">
+    <p class="mb-0">วันที่สั่งซื้อ</p>
+    <p class="mb-0 productDataText">• {{ order.createAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    <p class="mb-0">สถานะคำสั่งซื้อ</p>
+    <p *ngIf="order.status == 'cart'" class="mb-0 productDataText">• รอชำระเงิน</p>
+    <p *ngIf="order.status == 'pending-payment'" class="mb-0 productDataText">• กำลังชำระเงิน</p>
+    <p *ngIf="order.status == 'payment-fraud'" class="mb-0 productDataText">• จ่ายเงินไม่สำเร็จ</p>
+    <p *ngIf="order.status == 'waiting-for-delivery'" class="mb-0 productDataText">• เตรียมการจัดส่ง</p>
+    <p *ngIf="order.status == 'shipping'" class="mb-0 productDataText">• ระหว่างขนส่ง</p>
+    <p *ngIf="order.status == 'shipped'" class="mb-0 productDataText">• ขนส่งสำเร็จ</p>
+    <p *ngIf="order.status == 'sale-success'" class="mb-0 productDataText">• สำเร็จ</p>
+    <p *ngIf="order.status == 'cancelBySeller'" class="mb-0 productDataText">• ยกเลิกสินค้าโดยร้านค้า</p>
+    <p *ngIf="order.status == 'cancelByBuyer'" class="mb-0 productDataText">• ยกเลิกสินค้าโดยผู้ซื้อ</p>
+    <p *ngIf="order.status == 'return'" class="mb-0 productDataText">• คืนสินค้า</p>
+    <div *ngIf="order.status == 'expired'">
+      <p class="mt-2 mb-0">วันที่หมดอายุ</p>
+      <p class="mb-0 productDataText">• {{ order.expiredAt.seconds*1000 | date: 'd/M/yyyy' }}</p>
+    </div>
+    <p class="mb-0">รหัสข้อมูล</p>
+    <p class="mb-0 productDataText">• {{ id }}</p>
+    <p class="mb-0">รหัสคำสั่งซื้อ</p>
+    <p class="mb-0 productDataText">• {{ order.orderNo }}</p>
+    <p class="mb-0">รหัสสินค้า</p>
+    <p class="mb-0 productDataText">• {{ order.productKey }}</p>
+    <p class="mb-0">ชื่อสินค้า</p>
+    <p class="mb-0 productDataText">• {{ order.productName }}</p>
+    <a class="mb-0 text-dark" style="font-size: 1rem; text-decoration: none;">รายละเอียดสินค้า </a><a
+      (click)="clickShowDes()" style="color: #D9534F; cursor: pointer;">{{ textShowProductDescription }}</a>
+    <div *ngIf="showProductDescription">
+      <div [innerHTML]="order.productDescription"></div>
+    </div>
+    <p class="mb-0">ตัวเลือกสินค้า</p>
+    <p class="mb-0 productDataText">• ตัวเลือก: {{ order.productOption.optionName }} | ตัวเลือกย่อย: {{
+      order.productOption.subOption }} | จำนวน: {{ order.productOption.number }}</p>
+    <p class="mb-0">ราคาสินค้า</p>
+    <p class="mb-0 productDataText">• ฿{{ order.priceOfProduct }}</p>
+    <p class="mb-0">ประเภทการขาย</p>
+    <p *ngIf="order.salesType == 'auction'" class="mb-0 productDataText">• ประมูล</p>
+    <p *ngIf="order.salesType == 'setSellingPrice'" class="mb-0 productDataText">• ตั้งราคาวางขาย</p>
+    <p class="mb-0">ประเภทสินค้า</p>
+    <p class="mb-0 productDataText">• {{ order.tag.tagTH }} | {{ order.tag.subTagTH }}</p>
+    <p class="mb-0">ภาพสินค้า</p>
+    <div class="row row-img-m" style="margin-top: -8px;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2" *ngFor="let _dataImg of order.imgProduct;">
+        <img src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10">
+      </div>
+    </div>
+    <p class="mb-0">รหัสร้านค้า</p>
+    <p class="mb-0 productDataText">• {{ order.sellerUID }}</p>
+    <p class="mb-0">ชื่อร้านค้า</p>
+    <p class="mb-0 productDataText">• {{ order.shopName }}</p>
+    <!-- <p class="mb-0">ซื้อบนระบบ</p>
+    <p class="mb-0 productDataText">• {{ order.device }}</p> -->
+
+
+  </div>
+</div>
+
+<!-- DELIVERY -->
+<div *ngIf="showContent && order.delivery != null">
+  <div class="card-border-3 bg-white mb-2">
+    <p class="mb-0">รหัสติดตามสินค้า</p>
+    <p class="mb-0 productDataText">• {{ order.delivery.trackingNumber }}</p>
+    <p class="mb-0">บริการขนส่ง</p>
+    <p class="mb-0 productDataText">• {{ order.delivery.priceDelivery.deliveryName }}</p>
+    <p class="mb-0">ค่าบริการขนส่ง</p>
+    <p class="mb-0 productDataText">• ฿{{ order.delivery.priceDelivery.priceDeliveryInput }}</p>
+
+    <!-- DESCRIPTION-->
+    <div class="mt-2" style="background-color: #373E48; border-radius: 5px; padding: 15px;">
+      <!-- TRANSPORT -->
+      <p class="text-white mb-0">การขนส่ง</p>
+      <!-- TRANSPORT EMPTY -->
+      <div *ngIf="transport == null" class="mt-4 mb-4">
+        <p class="text-center text-danger mb-0">ไม่พบข้อมูลรายละเอียดการจัดส่ง</p>
+        <p class="text-center text-danger mb-0">โปรดติดตามสินค้าผ่านเว็บไซต์</p>
+      </div>
+      <!-- TRANSPORT !EMPTY -->
+      <div *ngIf="transport != null">
+        <div *ngFor="let data of transport.routes; let i = index;" class="row row-mlr mt10">
+          <div class="col-auto col-plr pr-0 align-self-center">
+            <div [class.dot-start]="i+1 < transport.routes.length"></div>
+            <div [class.line-start]="i+1 > 1 && i+1 != transport.routes.length"></div>
+            <div [class.dot-now-opa]="i+1 == transport.routes.length"></div>
+            <div [class.dot-now]="i+1 == transport.routes.length"></div>
+            <div [class.line-start]="i+1 != 1 && i+1 == transport.routes.length"></div>
+          </div>
+          <div class="col col-plr">
+            <p class="mb-0 text-white font-sm-1">{{ data.stateTextTH }}</p>
+            <p class="mb-0 font-sm-7" style="color: #A2A2A2;">{{ data.stateDate | date: 'd/M/yyyy' }} {{ data.stateDate | date: "HH:mm" }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- END TRANSPORT -->
+    </div>
+
+    <div class="row" *ngIf="order.delivery.priceDelivery.deliveryName != 'handPickUp'">
+      <div class="col-auto align-self-center">
+        <p class="mb-0 productDataText">• {{ order.delivery.trackingNumber }}</p>
+      </div>
+      <div class="col-auto pr-0">
+        <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
+          data-target="#ModalPopupCopyTrackNumber" (click)="copyTrackNumber()">คัดลอก</button>
+      </div>
+      <div class="col-auto">
+        <div class="col-auto">
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="order.delivery.priceDelivery.deliveryName == 'Kerry Express'"
+            onclick="window.open('https://th.kerryexpress.com/th/track/')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="order.delivery.priceDelivery.deliveryName == 'Thailand Post'"
+            onclick="window.open('https://track.thailandpost.co.th/')" target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="order.delivery.priceDelivery.deliveryName == 'SCG Express'"
+            onclick="window.open('https://www.scgexpress.co.th/tracking')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="order.delivery.priceDelivery.deliveryName == 'Flash Express'"
+            onclick="window.open('https://www.flashexpress.co.th/tracking')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+        </div>
+      </div>
+    </div>
+
+    <p class="mb-0">ที่อยู่ผู้ซื้อ</p>
+    <p class="mb-0 productDataText">• {{ order.delivery.buyyerAddress.addressString }}</p>
+    <p class="mb-0">ที่อยู่ร้านค้า</p>
+    <p class="mb-0 productDataText">• {{ shopAddress }}</p>
+
+    <p class="mb-0">บริการเก็บเงินปลายทาง</p>
+    <p *ngIf="codStatus" class="mb-0 productDataText">• ใช่</p>
+    <p *ngIf="!codStatus" class="mb-0 productDataText">• ไม่</p>
+    <p class="mb-0">เตรียมส่งนานกว่าปกติ</p>
+    <p *ngIf="order.delivery.dateOverForPickUp.status" class="mb-0 productDataText">• {{
+      order.delivery.dateOverForPickUp.dateForPickUp }}</p>
+    <p *ngIf="!order.delivery.dateOverForPickUp.status" class="mb-0 productDataText">• ไม่</p>
+  </div>
+</div>
+
+<!-- DONATE -->
+<div *ngIf="showContent && order.donate.status">
+  <div class="card-border-3 bg-white mb-2">
+    <p class="mb-0">บริจาคชื่อร้าน</p>
+    <p class="mb-0 productDataText">• {{ order.donate.shopName }}</p>
+    <p class="mb-0">บริจาครหัสร้าน</p>
+    <p class="mb-0 productDataText">• {{ order.donate.Key }}</p>
+    <p class="mb-0">บริจาคเปอร์เซ็นต์</p>
+    <p class="mb-0 productDataText">• {{ order.donate.donatePer }}</p>
+  </div>
+</div>
+
+<!-- RETURN -->
+<div *ngIf="showContent && order.status == 'return'">
+  <div class="card-border-3 bg-white mb-2">
+    <!-- BUYER WONT TO RETURN PRODUCT -->
+    <!-- STATUS -->
+    <p class="mb-0">สถานะ</p>
+    <p class="mb-0 productDataText">• ผู้ซื้อแจ้งคืนสินค้า ({{ order.returnProduct.buyerRequestAt.seconds*1000 | date:
+      'd/M/yyyy' }} | {{ order.returnProduct.buyerRequestAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+    <!-- REASON -->
+    <p class="mt-2 mb-0">เหตุผลการคืนสินค้า</p>
+    <p class="mb-0 productDataText">• {{ order.returnProduct.buyerRequestReason }}</p>
+    <!-- PRODUCT IMG -->
+    <p class="mt-2 mb-0">ภาพสินค้าเพิ่มเติม</p>
+    <div class="row row-img-m" style="margin-top: -8px;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2" *ngFor="let _dataImg of order.returnProduct.buyerRequestImg;">
+        <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+          src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
+      </div>
+    </div>
+    <!-- DESCRIPTION -->
+    <p class="mt-2 mb-0">คำอธิบายเพิ่มเติม</p>
+    <p class="mb-0 productDataText">• {{ order.returnProduct.buyerRequestDes }}</p>
+
+    <!-- SELLER ARGUE DETAIL -->
+    <div
+      *ngIf="order.returnProduct.status == 'sellerArgueRequest' || order.returnProduct.status == 'returnProductShippingAdmin' || order.returnProduct.status == 'sellerArgueReceive' || order.returnProduct.status == 'returnProductShippingReceiveAdmin' || order.returnProduct.status == 'success'"
+      class="container-bg-color-black mt-2">
+      <!-- STATUS -->
+      <p class="mb-0 text-white">สถานะ</p>
+      <p class="mb-0 productDataTextWhite">• ผู้ขายโต้แย้ง ({{ order.returnProduct.sellerArgueAt.seconds*1000 | date:
+        'd/M/yyyy' }} | {{ order.returnProduct.sellerArgueAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      <!-- PRODUCT IMG -->
+      <p class="mt-2 mb-0 text-white">ภาพสินค้าเพิ่มเติม</p>
+      <div class="row row-img-m" style="margin-top: -8px;">
+        <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2"
+          *ngFor="let _dataImg of order.returnProduct.sellerArgueImg;">
+          <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+            src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
+        </div>
+      </div>
+      <!-- DESCRIPTION -->
+      <p class="mt-2 mb-0 text-white">คำอธิบายเพิ่มเติม</p>
+      <p class="mb-0 productDataTextWhite">• {{ order.returnProduct.sellerArgueDes }}</p>
+    </div>
+
+    <!-- SELLER REQUEST ACCEPT -->
+    <div *ngIf="(order.returnProduct.status == 'returnProductShipping' || showReturnProductShipping)"
+      class="container-bg-color-black mt-2">
+      <!-- STATUS -->
+      <p class="mb-0 text-white">สถานะ</p>
+      <p class="mb-0 productDataTextWhite">• ผู้ขายยอมรับการคืนสินค้า ({{
+        order.returnProduct.returnProductShippingAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+        order.returnProduct.returnProductShippingAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      <!-- DESCRIPTION -->
+      <p class="mt-2 mb-0 text-white">ที่อยู่ในการส่งคืนสินค้า</p>
+      <p class="mb-0 productDataTextWhite">• ชื่อ-นามสกุล: {{ order.returnProduct.returnProductShippingAddress.name
+        }} {{ order.returnProduct.returnProductShippingAddress.lastName }}</p>
+      <p class="mb-0 productDataTextWhite">• ที่อยู่: {{ order.returnProduct.returnProductShippingAddress.number }}
+        {{ order.returnProduct.returnProductShippingAddress.moo }} {{
+        order.returnProduct.returnProductShippingAddress.village }} {{
+        order.returnProduct.returnProductShippingAddress.lane }} {{
+        order.returnProduct.returnProductShippingAddress.road }} {{
+        order.returnProduct.returnProductShippingAddress.subDistrict }} {{
+        order.returnProduct.returnProductShippingAddress.district }} {{
+        order.returnProduct.returnProductShippingAddress.province }} {{
+        order.returnProduct.returnProductShippingAddress.postalCode }} ({{
+        order.returnProduct.returnProductShippingAddress.phone }})</p>
+    </div>
+
+    <!-- ABIDMORE DETAIL -->
+    <div
+      *ngIf="order.returnProduct.status == 'sellerArgueReturnProduct' || order.returnProduct.status == 'returnProductShippingAdmin' || order.returnProduct.status == 'sellerArgueReceive' || order.returnProduct.status == 'returnProductShippingReceiveAdmin' || showAdminRequest"
+      class="container-bg-color-yellow mt-2">
+      <!-- STATUS -->
+      <p class="mb-0">คำตัดสินจาก aBidMore</p>
+      <div *ngIf="order.returnProduct.adminRequestWhoWin == 'buyer'">
+        <p class="mb-0 productDataText">• ผู้ซื้อเป็นฝ่ายถูกต้อง ({{ order.returnProduct.adminRequestAt.seconds*1000
+          | date: 'd/M/yyyy' }} | {{
+          order.returnProduct.adminRequestAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      </div>
+      <div *ngIf="order.returnProduct.adminRequestWhoWin == 'seller'">
+        <p class="mb-0 productDataText">• ผู้ขายเป็นฝ่ายถูกต้อง ({{ order.returnProduct.adminRequestAt.seconds*1000
+          | date: 'd/M/yyyy' }} | {{
+          order.returnProduct.adminRequestAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      </div>
+      <!-- DESCRIPTION -->
+      <p class="mt-2 mb-0">คำอธิบายเพิ่มเติม</p>
+      <p class="mb-0 productDataText">• {{ order.returnProduct.adminRequestDes }}</p>
+    </div>
+
+    <!-- RETURN PRODUCT RECEIVE -->
+    <div
+      *ngIf="order.returnProduct.status == 'returnProductShippingAdmin' || order.returnProduct.status == 'sellerArgueReceive' || order.returnProduct.status == 'returnProductShippingReceiveAdmin' || showReturnProductShippingAdmin"
+      class="container-bg-color-red mt-2">
+      <!-- STATUS -->
+      <p class="mb-0">สถานะ</p>
+      <p class="mb-0 productDataText">• สินค้ากำลังส่งกลับ ({{
+        order.returnProduct.returnProductShippingAdminAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+        order.returnProduct.returnProductShippingAdminAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      <!-- DELIVERY DETAIL -->
+      <!-- <a class="mt-2" style="text-decoration:none; color: #000;">รายละเอียดขนส่ง</a>
+      <p class="mb-0 productDataText">• Kerry Express (ด่วนพิเศษ)</p> -->
+      <p class="mt-2 mb-0">ที่อยู่ในการส่งคืนสินค้า</p>
+      <p class="mb-0 productDataText">• ชื่อ-นามสกุล: {{ order.returnProduct.returnProductShippingAdminAddress.name
+        }} {{ order.returnProduct.returnProductShippingAdminAddress.lastName }}</p>
+      <p class="mb-0 productDataText">• ที่อยู่: {{ order.returnProduct.returnProductShippingAdminAddress.number }}
+        {{ order.returnProduct.returnProductShippingAdminAddress.moo }} {{
+        order.returnProduct.returnProductShippingAdminAddress.village }} {{
+        order.returnProduct.returnProductShippingAdminAddress.lane }} {{
+        order.returnProduct.returnProductShippingAdminAddress.road }} {{
+        order.returnProduct.returnProductShippingAdminAddress.subDistrict }} {{
+        order.returnProduct.returnProductShippingAdminAddress.district }} {{
+        order.returnProduct.returnProductShippingAdminAddress.province }} {{
+        order.returnProduct.returnProductShippingAdminAddress.postalCode }} ({{
+        order.returnProduct.returnProductShippingAdminAddress.phone }})</p>
+
+      <!-- TRACKING NUMBER -->
+      <!-- <div class="row">
+      <div class="col-auto">
+        <p class="mb-0 productDataText">• KERRY7fT954uh3SH</p>
+      </div>
+      <div class="col-auto pr-0">
+        <button type="button" class="btn text-placeholder text-center btn-copy-red" data-toggle="modal"
+          data-target="#ModalPopupCopyTrackNumber" (click)="copyTrackNumber()">คัดลอก</button>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn text-placeholder text-center btn-copy-red">ติดตามสินค้าผ่านเว็บไซต์</button>
+      </div>
+      </div> -->
+      <!-- TRACKING -->
+      <!-- <p class="mt-2 mb-0">สถานะขนส่ง</p>
+      <p class="mb-0 productDataText">• สมุทรปราการ (10/05/2020 10:17)</p>
+      <p class="mb-0 productDataText">• รถเข้ารับพัสดุ (10/05/2020 10:17)</p>
+      <p class="mb-0 productDataText">• ศูนย์คัดจังหวัดเชียงใหม่ (10/05/2020 10:17)</p>
+      <p class="mb-0 productDataText">• พัสดุรอนำจ่าย (10/05/2020 10:17)</p>
+      <p class="mb-0 productDataText">• พัสดุนำจ่ายจำเร็จ (06/05/2020 10:17)</p> -->
+    </div>
+
+    <!-- SELLER ARGUE RECEIVE -->
+    <div
+      *ngIf="order.returnProduct.status == 'sellerArgueReceive' || order.returnProduct.status == 'returnProductShippingReceiveAdmin' || showSellerArgueReceive"
+      class="container-bg-color-black mt-2">
+      <!-- STATUS -->
+      <p class="mb-0 text-white">สถานะ</p>
+      <p class="mb-0 productDataTextWhite">• ผู้ขายโต้แย้งสินค้าส่งกลับไม่ถูกต้อง ({{
+        order.returnProduct.sellerArgueReceiveAt.seconds*1000 | date: 'd/M/yyyy' }} | {{
+        order.returnProduct.sellerArgueReceiveAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      <!-- PRODUCT IMG -->
+      <p class="mt-2 mb-0 text-white">ภาพสินค้าเพิ่มเติม</p>
+      <div class="row row-img-m" style="margin-top: -8px;">
+        <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2"
+          *ngFor="let _dataImg of order.returnProduct.sellerArgueReceiveImg;">
+          <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+            src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
+        </div>
+      </div>
+      <!-- DESCRIPTION -->
+      <p class="mt-2 mb-0 text-white">คำอธิบายเพิ่มเติม</p>
+      <p class="mb-0 productDataTextWhite">• {{ order.returnProduct.sellerArgueReceiveDes }}</p>
+    </div>
+
+    <!-- ABIDMORE DETAIL -->
+    <div *ngIf="order.returnProduct.status == 'returnProductShippingReceiveAdmin' || showAdminReceive"
+      class="container-bg-color-yellow mt-2">
+      <!-- STATUS -->
+      <p class="mb-0">คำตัดสินจาก aBidMore</p>
+      <div *ngIf="order.returnProduct.adminRequestWhoWin == 'buyer'">
+        <p class="mb-0 productDataText">• ผู้ซื้อเป็นฝ่ายถูกต้อง ({{ order.returnProduct.adminReceiveAt.seconds*1000
+          | date: 'd/M/yyyy' }} | {{
+          order.returnProduct.adminReceiveAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      </div>
+      <div *ngIf="order.returnProduct.adminRequestWhoWin == 'seller'">
+        <p class="mb-0 productDataText">• ผู้ขายเป็นฝ่ายถูกต้อง ({{ order.returnProduct.adminReceiveAt.seconds*1000
+          | date: 'd/M/yyyy' }} | {{
+          order.returnProduct.adminReceiveAt.seconds*1000 | date: "HH:mm:ss" }})</p>
+      </div>
+      <!-- DESCRIPTION -->
+      <p class="mt-2 mb-0">คำอธิบายเพิ่มเติม</p>
+      <p class="mb-0 productDataText">• {{ order.returnProduct.adminReceiveDes }}</p>
+    </div>
+
+    <!-- RETURN PRODUCT RECEIVE -->
+    <div *ngIf="order.returnProduct.status == 'success'" class="container-bg-color mt-2">
+      <!-- STATUS -->
+      <p class="mb-0">สถานะ</p>
+      <p class="mb-0 productDataText">• รายการแจ้งคืนสินค้าเสร็จสิ้น</p>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL POPUP TRACK NUMBER -->
+<div class="modal fade" id="ModalPopupCopyTrackNumber" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img class="rounded mx-auto d-block" style="width: 120px;" src="../../assets/img/loadingpage-final.png">
+      <h5 class="font-weight-bold text-center mt-5">แจ้งเตือน</h5>
+      <p class="text-center">คัดลอกรหัสติดตามสินค้าเรียบร้อย</p>
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ENG MODAL POPUP TRACK NUMBER -->

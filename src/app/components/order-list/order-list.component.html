@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col pr-0">
+    <input type="text" class="form-control" style="border-radius: 50px;" 
+    #searchInput 
+    (keyup)="searchOrderInput($event)"
+    (keyup.enter)="searchOrder(searchInput.value)"
+    placeholder="ค้นหาจากรหัสคำสั่งซื้อ">
+  </div>
+  <div class="col-auto">
+    <button type="button" class="btn text-placeholder text-center btn-copy" (click)="searchOrder(searchInput.value)">ค้นหา</button>
+  </div>
+</div>
+
+<div *ngIf="orderList.length == 0 && !noMatchData" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem;">เพิ่มรหัสรหัสคำสั่งซื้อในช่องค้นหา</p>
+</div>
+<div *ngIf="noMatchData" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem; color: #F26E24;">ไม่พบรหัสคำสั่งซื้อที่ตรงกัน</p>
+</div>
+
+<div *ngIf="showContent" class="row">
+  <!-- USER BUYER SEARCH LIST -->
+  <div class="col-12 mt-3" *ngFor="let data of orderList" (click)="orderDetail(data.key)" style="cursor: pointer;">
+    <div class="card-border-3 bg-white">
+      <div class="row row-sm_">
+        <div class="col-auto col-sm_ align-self-center">
+          <img style="width: 70px; height: 70px; border-radius: 10px;" src="{{ data.value.imgProduct[0].imgUrl }}">
+        </div>
+        <div class="col col-sm_ align-self-center">
+          <p class="mb-0 text-dark">รหัสคำสั่งซื้อ : {{ data.value.orderNo }}</p>
+          <p class="mb-0 text-dark">ชื่อสินค้า : {{ data.value.productName }}</p>
+          <p class="mb-0 text-dark">รหัสสินค้า : {{ data.value.productKey }}</p>
+          <p class="mb-0 text-dark">รหัสผู้ซื้อ : {{ data.value.buyerUID }}</p>
+          <p class="mb-0 text-dark">รหัสร้านค้า : {{ data.value.sellerUID }}</p>
+          <p *ngIf="data.value.status == 'cart'" class="mb-0 text-dark">สถานะ : รอชำระเงิน</p>
+          <p *ngIf="data.value.status == 'pending-payment'" class="mb-0 text-dark">สถานะ : กำลังชำระเงิน</p>
+          <p *ngIf="data.value.status == 'payment-fraud'" class="mb-0 text-dark">สถานะ : จ่ายเงินไม่สำเร็จ</p>
+          <p *ngIf="data.value.status == 'waiting-for-delivery'" class="mb-0 text-dark">สถานะ : เตรียมการจัดส่ง</p>
+          <p *ngIf="data.value.status == 'shipping'" class="mb-0 text-dark">สถานะ : ระหว่างขนส่ง</p>
+          <p *ngIf="data.value.status == 'shipped'" class="mb-0 text-dark">สถานะ : ขนส่งสำเร็จ</p>
+          <p *ngIf="data.value.status == 'sale-success'" class="mb-0 text-dark">สถานะ : สำเร็จ</p>
+          <p *ngIf="data.value.status == 'cancelBySeller'" class="mb-0 text-dark">สถานะ : ยกเลิกสินค้าโดยร้านค้า</p>
+          <p *ngIf="data.value.status == 'cancelByBuyer'" class="mb-0 text-dark">สถานะ : ยกเลิกสินค้าโดยผู้ซื้อ</p>
+          <p *ngIf="data.value.status == 'return'" class="mb-0 text-dark">สถานะ : คืนสินค้า</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

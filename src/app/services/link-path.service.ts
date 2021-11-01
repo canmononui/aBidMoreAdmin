@@ -11,6 +11,7 @@ export class LinkPathService {
   public chatSellerPath = false;
   public chatBuyyerPath = false;
   public reportProductPath = false;
+  public orderPath = false;
   public returnProductPath = false;
   public donatePath = false;
   public conditionSellerPath = false;
@@ -31,6 +32,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -49,6 +51,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -67,6 +70,7 @@ export class LinkPathService {
       this.chatSellerPath = true;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -85,6 +89,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = true;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -103,6 +108,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = true;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -115,12 +121,33 @@ export class LinkPathService {
       this.vdoPath = false
       this.path = 'reportProduct';
     }
+    else if(_path == 'order'){
+      this.sellerPath = false;
+      this.buyyerPath = false;
+      this.chatSellerPath = false;
+      this.chatBuyyerPath = false;
+      this.reportProductPath = false;
+      this.orderPath = true;
+      this.orderPath = true;
+      this.returnProductPath = false;
+      this.donatePath = false;
+      this.conditionSellerPath = false;
+      this.conditionBuyyerPath = false;
+      this.notificationPath = false;
+      this.bannerPath = false;
+      this.memberPath = false;
+      this.percentagePath = false;
+      this.adminPath = false;
+      this.vdoPath = false
+      this.path = 'order';
+    }
     else if(_path == 'returnProduct'){
       this.sellerPath = false;
       this.buyyerPath = false;
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = true;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -139,6 +166,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = true;
       this.conditionSellerPath = false;
@@ -157,6 +185,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = true;
@@ -175,6 +204,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -193,6 +223,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -211,6 +242,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -229,6 +261,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -247,6 +280,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -265,6 +299,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -283,6 +318,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;
@@ -301,6 +337,7 @@ export class LinkPathService {
       this.chatSellerPath = false;
       this.chatBuyyerPath = false;
       this.reportProductPath = false;
+      this.orderPath = false;
       this.returnProductPath = false;
       this.donatePath = false;
       this.conditionSellerPath = false;

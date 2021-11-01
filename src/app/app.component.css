@@ -35,7 +35,10 @@
   .sidenav a {font-size: 18px;}
 } */
 
-
+.disabled {
+  pointer-events: none;
+  opacity: 0.4;
+}
 
 /* Medium devices (tablets, 768px and up) */
 @media only screen and (max-width: 768px) {

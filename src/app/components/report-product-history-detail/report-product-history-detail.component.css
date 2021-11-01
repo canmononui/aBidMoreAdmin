@@ -11,6 +11,13 @@
   padding: 15px;
 }
 
+.card-border-color-admin {
+  background-color: #ffeeee;
+  color: #FFF;
+  border-radius: 15px;
+  padding: 15px;
+}
+
 .productDataText {
   color: #8E8D8D;
 }
@@ -47,6 +54,17 @@
   background-color: #5CB85C; */
 }
 
+.btn-unban {
+  width: auto; 
+  border: none; 
+  border-radius: 1.5rem; 
+  color: #FFF; 
+  border: 1px solid #5CB85C; 
+  background-color: #5CB85C;
+  /* border: 1px solid #5CB85C;
+  background-color: #5CB85C; */
+}
+
 .pl-top-menu-sm {
   padding-left: 4px;
 }
@@ -76,6 +94,11 @@
   }
 
   .card-border-color {
+    border-radius: 15px;
+    padding: 8px;
+  }
+
+  .card-border-color-admin {
     border-radius: 15px;
     padding: 8px;
   }

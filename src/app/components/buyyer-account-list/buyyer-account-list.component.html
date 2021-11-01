@@ -1,24 +1,35 @@
 <div class="row">
   <div class="col pr-0">
-    <input type="text" class="form-control" style="border-radius: 50px;" placeholder="ค้นหาจากรหัสผู้ใช้งาน/ชื่อผู้ใช้งาน">
+    <input type="text" class="form-control" style="border-radius: 50px;" 
+    #searchInput 
+    (keyup)="searchUserBuyerInput($event)"
+    (keyup.enter)="searchUserBuyer(searchInput.value)"
+    placeholder="ค้นหาจากรหัสผู้ใช้งาน/Emailผู้ใช้งาน">
   </div>
   <div class="col-auto">
-    <button type="button" class="btn text-placeholder text-center btn-copy">ค้นหา</button>
+    <button type="button" class="btn text-placeholder text-center btn-copy" (click)="searchUserBuyer(searchInput.value)">ค้นหา</button>
   </div>
 </div>
 
-<div class="row">
-  <!-- LIST 1 -->
-  <div class="col-12 mt-3 router" [routerLink]="['/buyyer-account-detail']">
+<div *ngIf="userBuyerList.length == 0 && !noMatchData" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem;">เพิ่มรหัสผู้ใช้งาน/Emailผู้ใช้งานในช่องค้นหา</p>
+</div>
+<div *ngIf="noMatchData" class="text-center" style="padding-top: 48px; padding-bottom: 48px;">
+  <p style="font-size: .8rem; color: #F26E24;">ไม่พบรหัสผู้ใช้งาน/Emailผู้ใช้งานที่ตรงกัน</p>
+</div>
+
+<div *ngIf="showContent" class="row">
+  <!-- USER BUYER SEARCH LIST -->
+  <div class="col-12 mt-3" *ngFor="let data of userBuyerList" (click)="userBuyerDetail(data.key)" style="cursor: pointer;">
     <div class="card-border-3 bg-white">
       <div class="row row-sm_">
         <div class="col-auto col-sm_ align-self-center">
-          <img class="rounded-circle" style="width: 70px; height: 70px;" src="./assets/img/business-girl-1.png">
+          <img class="rounded-circle" style="width: 70px; height: 70px;" src="{{ data.value.profileImg.imgUrl }}">
         </div>
         <div class="col col-sm_ align-self-center">
-          <p class="mb-0 text-dark">canmononui</p>
-          <p class="mb-0 text-dark">รหัสผู้ใช้งาน : UID097834572</p>
-          <p class="mb-0 text-dark">สถานะ : ออนไลน์</p>
+          <p class="mb-0 text-dark">ชื่อผู้ใช้งาน : {{ data.value.displayName }}</p>
+          <p class="mb-0 text-dark">รหัสผู้ใช้งาน : {{ data.key }}</p>
+          <p class="mb-0 text-dark">สถานะ : {{ data.value.userStatus }}</p>
         </div>
       </div>
     </div>

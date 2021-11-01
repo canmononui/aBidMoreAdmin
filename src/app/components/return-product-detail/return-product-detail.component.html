@@ -1,46 +1,50 @@
 <!-- <div class="pl-2 pr-2"> -->
-  <!-- TOP MENU -->
-  <div class="row">
-    <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/return-product-list']">
-      <p>แจ้งคืนสินค้า</p>
-    </div>
-    <div class="col-auto pl-1 router" [routerLink]="['/return-product-sendback-wrong-list']">
-      <p>ร้านค้าแจ้งการส่งของกลับผิดพลาด</p>
-    </div>
-    <div class="col-auto pl-top-menu-sm router" [routerLink]="['/return-product-respond-more-seven-days-list']">
-      <p>ร้านค้าไม่ตอบรับเกิน 7 วัน</p>
-    </div>
+<!-- TOP MENU -->
+<div class="row">
+  <div class="col-auto router" style="color: #FFA101;" [routerLink]="['/return-product-list']">
+    <p>แจ้งคืนสินค้า</p>
   </div>
-  <!-- END TOP MENU -->
+  <div class="col-auto pl-1 router" [routerLink]="['/return-product-sendback-wrong-list']">
+    <p>ร้านค้าแจ้งการส่งของกลับผิดพลาด</p>
+  </div>
+  <div class="col-auto pl-top-menu-sm router disabled" [routerLink]="['/return-product-respond-more-seven-days-list']">
+    <p>ร้านค้าไม่ตอบรับเกิน 7 วัน</p>
+  </div>
+</div>
+<!-- END TOP MENU -->
 
-  <!-- CONTENT -->
+<!-- CONTENT -->
+<div *ngIf="showContent">
   <!-- CARD STATUS -->
   <div class="row row-m">
     <div class="col col-p">
       <div class="col-auction-date">
         <i class="fa fa-2x fa-flag"></i>
-        <p class="mb-0">02/05/2020 12:00</p>
-        <p class="mb-0 text-07">วันที่เริ่มประมูล</p>
+        <p class="mb-0">{{ orderDes.productCreateAt.seconds*1000 | date: 'd/M/yyyy' }} {{
+          orderDes.productCreateAt.seconds*1000 | date: "HH:mm:ss" }}</p>
+        <p class="mb-0 text-07">วันที่ลงสินค้า</p>
       </div>
     </div>
     <div class="col col-p">
       <div class="col-order-date">
         <i class="fa fa-2x fa-shopping-cart"></i>
-        <p class="mb-0">03/05/2020 15:33</p>
+        <p class="mb-0">{{ orderDes.createAt.seconds*1000 | date: 'd/M/yyyy' }} {{ orderDes.createAt.seconds*1000
+          | date: "HH:mm:ss" }}</p>
         <p class="mb-0 text-07">วันที่สั่งสินค้า</p>
       </div>
     </div>
     <div class="col col-p">
       <div class="col-send-date">
         <i class="fa fa-2x fa-archive"></i>
-        <p class="mb-0">03/05/2020 15:33</p>
-        <p class="mb-0 text-07">วันที่สั่งสินค้า</p>
+        <p class="mb-0">{{ orderDes.startShippingAt.seconds*1000 | date: 'd/M/yyyy' }} {{
+          orderDes.startShippingAt.seconds*1000 | date: "HH:mm:ss" }}</p>
+        <p class="mb-0 text-07">วันที่ส่งสินค้า</p>
       </div>
     </div>
     <div class="col col-p">
       <div class="col-pickup-date">
         <i class="fa fa-2x fa-archive"></i>
-        <p class="mb-0">06/05/2020 14:44</p>
+        <p class="mb-0">xx/xx/xxxx xx:xx</p>
         <p class="mb-0 text-07">วันที่รับสินค้า</p>
       </div>
     </div>
@@ -52,8 +56,8 @@
     <!-- PRODUCT CODE -->
     <p class="mb-0">รหัสสินค้า</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• F34G7gk5Hj2io8p9</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• {{ orderDes.productKey }}</p>
       </div>
       <div class="col-auto">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
@@ -62,20 +66,21 @@
     </div>
     <!-- PRODUCT NAME -->
     <p class="mt-2 mb-0">ชื่อสินค้า</p>
-    <p class="mb-0 productDataText">• PRODUCT NAME</p>
+    <p class="mb-0 productDataText">• {{ orderDes.productName }}</p>
     <!-- PRICE AUCTION -->
     <p class="mt-2 mb-0">ราคาจบประมูลสินค้า</p>
-    <p class="mb-0 productDataText">• ฿15,000</p>
+    <p class="mb-0 productDataText">• ฿{{ orderDes.priceOfProduct }}</p>
     <!-- PRODUCT OPTION -->
     <p class="mt-2 mb-0">ตัวเลือกสินค้า</p>
-    <p class="mb-0 productDataText">• ตัวเลือก 1 ดำ</p>
-    <p class="mb-0 ml-2 productDataText">• 9 US จำนวน 1</p>
+    <p class="mb-0 productDataText">• ตัวเลือก {{ orderDes.productOption.optionName }}</p>
+    <p class="mb-0 ml-2 productDataText" *ngIf="orderDes.productOption.subOption != null">• ตัวเลือกย่อย {{
+      orderDes.productOption.subOption }}</p>
     <!-- PRODUCT IMG -->
     <p class="mt-2 mb-0">ภาพสินค้า</p>
     <div class="row row-img-m" style="margin-top: -8px;">
-      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
-        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/bag.png"
-          class="img-fluid border-radius-10" style="cursor: pointer;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2" *ngFor="let _dataImg of orderDes.imgProduct;">
+        <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+          src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
       </div>
     </div>
     <!-- DELIVERY DETAIL -->
@@ -85,48 +90,99 @@
 
     <div class="row">
       <div class="col-auto">
-        <p class="mb-0 productDataText">• Kerry Express (ด่วนพิเศษ)</p>
+        <p class="mb-0 productDataText">• {{ orderDes.delivery.priceDelivery.deliveryName }} (ด่วนพิเศษ)</p>
       </div>
       <div class="col">
-        <p class="mb-0 productDataText">ราคาที่ระบุ ฿100</p>
+        <p class="mb-0 productDataText">ราคาที่ระบุ ฿{{ orderDes.delivery.priceDelivery.priceDeliveryInput }}</p>
       </div>
     </div>
 
-    <div class="row">
-      <div class="col-auto">
-        <p class="mb-0 productDataText">• KERRY7fT954uh3SH</p>
+    <!-- DESCRIPTION-->
+    <div class="mt-2" style="background-color: #373E48; border-radius: 5px; padding: 15px;">
+      <!-- TRANSPORT -->
+      <p class="text-white mb-0">การขนส่ง</p>
+      <!-- TRANSPORT EMPTY -->
+      <div *ngIf="transport == null" class="mt-4 mb-4">
+        <p class="text-center text-danger mb-0">ไม่พบข้อมูลรายละเอียดการจัดส่ง</p>
+        <p class="text-center text-danger mb-0">โปรดติดตามสินค้าผ่านเว็บไซต์</p>
+      </div>
+      <!-- TRANSPORT !EMPTY -->
+      <div *ngIf="transport != null">
+        <div *ngFor="let data of transport.routes; let i = index;" class="row row-mlr mt10">
+          <div class="col-auto col-plr pr-0 align-self-center">
+            <div [class.dot-start]="i+1 < transport.routes.length"></div>
+            <div [class.line-start]="i+1 > 1 && i+1 != transport.routes.length"></div>
+            <div [class.dot-now-opa]="i+1 == transport.routes.length"></div>
+            <div [class.dot-now]="i+1 == transport.routes.length"></div>
+            <div [class.line-start]="i+1 != 1 && i+1 == transport.routes.length"></div>
+          </div>
+          <div class="col col-plr">
+            <p class="mb-0 text-white font-sm-1">{{ data.stateTextTH }}</p>
+            <p class="mb-0 font-sm-7" style="color: #A2A2A2;">{{ data.stateDate | date: 'd/M/yyyy' }} {{ data.stateDate | date: "HH:mm" }}</p>
+          </div>
+        </div>
+      </div>
+      <!-- END TRANSPORT -->
+    </div>
+
+    <div class="row" *ngIf="orderDes.delivery.priceDelivery.deliveryName != 'handPickUp'">
+      <div class="col-auto align-self-center">
+        <p class="mb-0 productDataText">• {{ orderDes.delivery.trackingNumber }}</p>
       </div>
       <div class="col-auto pr-0">
         <button type="button" class="btn text-placeholder text-center btn-copy" data-toggle="modal"
           data-target="#ModalPopupCopyTrackNumber" (click)="copyTrackNumber()">คัดลอก</button>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn text-placeholder text-center btn-copy">ติดตามสินค้าผ่านเว็บไซต์</button>
+        <div class="col-auto">
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="orderDes.delivery.priceDelivery.deliveryName == 'Kerry Express'"
+            onclick="window.open('https://th.kerryexpress.com/th/track/')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="orderDes.delivery.priceDelivery.deliveryName == 'Thailand Post'"
+            onclick="window.open('https://track.thailandpost.co.th/')" target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="orderDes.delivery.priceDelivery.deliveryName == 'SCG Express'"
+            onclick="window.open('https://www.scgexpress.co.th/tracking')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+          <button type="button" class="btn text-placeholder text-center btn-copy"
+            *ngIf="orderDes.delivery.priceDelivery.deliveryName == 'Flash Express'"
+            onclick="window.open('https://www.flashexpress.co.th/tracking')"
+            target="_blank">ติดตามสินค้าผ่านเว็บไซต์</button>
+        </div>
       </div>
     </div>
 
     <!-- BUYER -->
     <p class="mt-2 mb-0">ผู้สั่งซื้อ</p>
     <div class="row">
-      <div class="col-auto pr-0">
-        <p class="mb-0 productDataText">• รหัสผู้ใช้งาน : UID097834572</p>
+      <div class="col-auto pr-0 align-self-center">
+        <p class="mb-0 productDataText">• รหัสผู้ใช้งาน : {{ orderDes.buyerUID }}</p>
       </div>
       <div class="col-auto">
-        <button type="button" class="btn text-placeholder text-center btn-copy">ข้อความ</button>
+        <button type="button" class="btn text-placeholder text-center btn-copy" (click)="gotoChatRoom()">ข้อความ</button>
       </div>
     </div>
     <!-- BUYER ADDRESS -->
-    <p class="mt-2 mb-0">ชื่อสินค้า</p>
-    <p class="mb-0 productDataText">• สุทัศน์ สุขจิต 167 ซอย25 กองรักษาการณ์ ถนนสุขุมวิท ตำบลปากน้ำ
-      อำเภอเมืองสมุทรปราการ จังหวัดสุทรปราการ 10270
-      064-555-6666</p>
+    <div *ngIf="orderDes.delivery.priceDelivery.deliveryName == 'handPickUp'">
+      <p class="mt-2 mb-0">นัดรับมือ</p>
+      <p class="mb-0 productDataText">• ประเทศ : {{ orderDes.delivery.country }}</p>
+      <p class="mb-0 productDataText">• จังหวัด : {{ orderDes.delivery.province }}</p>
+      <p class="mb-0 productDataText">• รายละเอียด : {{ orderDes.delivery.description }}</p>
+    </div>
+    <div *ngIf="orderDes.delivery.priceDelivery.deliveryName != 'handPickUp'">
+      <p class="mt-2 mb-0">ที่อยู่ผู้ซื้อ</p>
+    </div>
+    <p class="mb-0 productDataText">• ชื่อ-นามสกุล: {{ buyerName }}</p>
+    <p class="mb-0 productDataText">• ที่อยู่: {{ buyerAddress }}</p>
     <!-- TRACKING -->
-    <p class="mt-2 mb-0">สถานะขนส่ง</p>
+    <!-- <p class="mt-2 mb-0">สถานะขนส่ง</p>
     <p class="mb-0 productDataText">• เชียงใหม่ (10/05/2020 10:17)</p>
     <p class="mb-0 productDataText">• รถเข้ารับพัสดุ (10/05/2020 10:17)</p>
     <p class="mb-0 productDataText">• ศูนย์คัดจังหวัดสมุทรปราการ (10/05/2020 10:17)</p>
     <p class="mb-0 productDataText">• พัสดุรอนำจ่าย (10/05/2020 10:17)</p>
-    <p class="mb-0 productDataText">• พัสดุนำจ่ายจำเร็จ (06/05/2020 10:17)</p>
+    <p class="mb-0 productDataText">• พัสดุนำจ่ายจำเร็จ (06/05/2020 10:17)</p> -->
   </div>
   <!-- END PRODUCT DETAIL -->
 
@@ -134,70 +190,71 @@
   <div class="container-bg-color-red mt-2">
     <!-- STATUS -->
     <p class="mb-0">สถานะ</p>
-    <p class="mb-0 productDataText">• ผู้ซื้อแจ้งคืนสินค้า (10/05/2020 10:17)</p>
+    <p class="mb-0 productDataText">• ผู้ซื้อแจ้งคืนสินค้า ({{ orderDes.returnProduct.buyerRequestAt.seconds*1000 |
+      date: 'd/M/yyyy' }} | {{ orderDes.returnProduct.buyerRequestAt.seconds*1000 | date: "HH:mm:ss" }})</p>
     <!-- REASON -->
     <p class="mt-2 mb-0">เหตุผลการคืนสินค้า</p>
-    <p class="mb-0 productDataText">• สินค้าไม่ตรงตามรายละเอียด</p>
+    <p class="mb-0 productDataText">• {{ orderDes.returnProduct.buyerRequestReason }}</p>
     <!-- PRODUCT IMG -->
     <p class="mt-2 mb-0">ภาพสินค้าเพิ่มเติม</p>
     <div class="row row-img-m" style="margin-top: -8px;">
-      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
-        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/bag.png"
-          class="img-fluid border-radius-10" style="cursor: pointer;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2"
+        *ngFor="let _dataImg of orderDes.returnProduct.buyerRequestImg;">
+        <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+          src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
       </div>
     </div>
     <!-- DESCRIPTION -->
     <p class="mt-2 mb-0">คำอธิบายเพิ่มเติม</p>
-    <p class="mb-0 productDataText">•
-      คำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติม
-    </p>
+    <p class="mb-0 productDataText">• {{ orderDes.returnProduct.buyerRequestDes }}</p>
   </div>
 
   <!-- SELLER ARGUE DETAIL -->
   <div class="container-bg-color-black mt-2">
     <!-- STATUS -->
     <p class="mb-0 text-white">สถานะ</p>
-    <p class="mb-0 productDataTextWhite">• ผู้ขายโต้แย้ง (10/05/2020 10:17)</p>
+    <p class="mb-0 productDataTextWhite">• ผู้ขายโต้แย้ง ({{ orderDes.returnProduct.sellerArgueAt.seconds*1000 |
+      date: 'd/M/yyyy' }} | {{ orderDes.returnProduct.sellerArgueAt.seconds*1000 | date: "HH:mm:ss" }})</p>
     <!-- PRODUCT IMG -->
     <p class="mt-2 mb-0 text-white">ภาพสินค้าเพิ่มเติม</p>
     <div class="row row-img-m" style="margin-top: -8px;">
-      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2">
-        <img data-toggle="modal" data-target="#ModalPopupImg" src="./assets/img/img-argue.png"
-          class="img-fluid border-radius-10" style="cursor: pointer;">
+      <div class="col-6 col-md-6 col-lg-2 col-img-p mt-2"
+        *ngFor="let _dataImg of orderDes.returnProduct.sellerArgueImg;">
+        <img data-toggle="modal" data-target="#ModalPopupImg" (click)="popUpImg(_dataImg.imgUrl)"
+          src="{{ _dataImg.imgUrl }}" class="img-fluid border-radius-10" style="cursor: pointer;">
       </div>
     </div>
     <!-- DESCRIPTION -->
     <p class="mt-2 mb-0 text-white">คำอธิบายเพิ่มเติม</p>
-    <p class="mb-0 productDataTextWhite">•
-      คำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติมคำอธิบายเพิ่มเติม
-    </p>
+    <p class="mb-0 productDataTextWhite">• {{ orderDes.returnProduct.sellerArgueDes }}</p>
   </div>
+</div>
 
-  <!-- INPUT -->
-  <div class="input-style mt-2">
-    <p class="mb-0 text-input">คำอธิบายหรือเหตุผลเพิ่มเติม* (0/100)</p>
-    <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
-      style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-      placeholder="กรุณาเพิ่มคำอธิบายหรือเหตุผล"></textarea>
-  </div>
+<!-- INPUT -->
+<!-- <div class="input-style mt-2">
+  <p class="mb-0 text-input">คำอธิบายหรือเหตุผลเพิ่มเติม</p>
+  <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
+    style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
+    placeholder="กรุณาเพิ่มคำอธิบายหรือเหตุผล"></textarea>
+</div> -->
 
-  <div class="row mb-4">
-    <div class="col-12 col-md-4 col-lg-4 mt-2">
-      <button type="button" class="btn text-white w-100" style="border-radius: 1.5rem; background-color: #D65126;"
-        data-toggle="modal" data-target="#ModalPopupOffer" data-backdrop="static" data-keyboard="false">ข้อเสนออื่น
-        ๆ</button>
-    </div>
-    <div class="col-12 col-md-4 col-lg-4 mt-2">
-      <button type="button" class="btn text-white w-100" style="border-radius: 1.5rem; background-color: #373E48;"
-        data-toggle="modal" data-target="#ModalPopupNotApprove" data-backdrop="static"
-        data-keyboard="false">ไม่อนุมัติการคืนสินค้า</button>
-    </div>
-    <div class="col-12 col-md-4 col-lg-4 mt-2">
-      <button type="button" class="btn text-white btn-mt-pprove w-100"
-        style="border-radius: 1.5rem; background-color: #5CB85C;" data-toggle="modal" data-target="#ModalPopupApprove"
-        data-backdrop="static" data-keyboard="false">อนุมัติการคืนสินค้า</button>
-    </div>
+<div class="row mb-4">
+  <div class="col-12 col-md-4 col-lg-4 mt-2">
+    <button type="button" class="btn text-white w-100 disabled"
+      style="border-radius: 1.5rem; background-color: #D65126;" data-toggle="modal" data-target="#ModalPopupOffer"
+      data-backdrop="static" data-keyboard="false">ข้อเสนออื่น ๆ</button>
   </div>
+  <div class="col-12 col-md-4 col-lg-4 mt-2">
+    <button type="button" class="btn text-white w-100" style="border-radius: 1.5rem; background-color: #373E48;"
+      data-toggle="modal" data-target="#ModalPopupNotApprove" data-backdrop="static"
+      data-keyboard="false">ไม่อนุมัติการคืนสินค้า</button>
+  </div>
+  <div class="col-12 col-md-4 col-lg-4 mt-2">
+    <button type="button" class="btn text-white btn-mt-pprove w-100"
+      style="border-radius: 1.5rem; background-color: #5CB85C;" data-toggle="modal" data-target="#ModalPopupApprove"
+      data-backdrop="static" data-keyboard="false">อนุมัติการคืนสินค้า</button>
+  </div>
+</div>
 <!-- </div> -->
 
 
@@ -238,14 +295,14 @@
       <div class="input-style">
         <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการไม่อนุมัติคืนสินค้า</p>
         <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
-          style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-          placeholder="เหตุผลการไม่อนุมัติคืนสินค้า"></textarea>
+          style="box-shadow: none; background-color: #F2F6FA;" #notAppReasonInput_
+          placeholder="เหตุผลการไม่อนุมัติคืนสินค้า" (keyup)="notAppInput($event)"></textarea>
       </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!notAppCheck"
             style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
-            [routerLink]="['/return-product-list']">ตกลง</button>
+            (click)="notApprove(notAppReasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -267,14 +324,14 @@
       <div class="input-style">
         <p class="mb-0 text-input">โปรดเพิ่มเหตุผลการอนุมัติคืนสินค้า</p>
         <textarea class="form-control border-0 p-0 text-placeholder" maxlength="100"
-          style="box-shadow: none; background-color: #F2F6FA;" #reasonInput_
-          placeholder="เหตุผลการอนุมัติคืนสินค้า"></textarea>
+          style="box-shadow: none; background-color: #F2F6FA;" #appReasonInput_ placeholder="เหตุผลการอนุมัติคืนสินค้า"
+          (keyup)="appInput($event)"></textarea>
       </div>
       <div class="mt-4">
         <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router"
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary router" [class.disabled]="!appCheck"
             style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;" data-dismiss="modal"
-            [routerLink]="['/return-product-list']">ตกลง</button>
+            (click)="approve(appReasonInput_.value)">ตกลง</button>
         </div>
         <div class="mt-2">
           <a data-dismiss="modal" aria-label="Close" style="cursor: pointer;">
@@ -306,23 +363,6 @@
 </div>
 <!-- ENG MODAL POPUP COPY -->
 
-<!-- MODAL POPUP SHOW IMG -->
-<div class="modal fade" id="ModalPopupImg" role="dialog" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
-      <img src="./assets/img/bag.png" class="img-fluid border-radius-10">
-      <div class="mt-4">
-        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
-          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
-            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
-            data-dismiss="modal">ตกลง</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- ENG MODAL POPUP SHOW IMG -->
-
 <!-- MODAL POPUP TRACK NUMBER -->
 <div class="modal fade" id="ModalPopupCopyTrackNumber" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
@@ -341,3 +381,20 @@
   </div>
 </div>
 <!-- ENG MODAL POPUP TRACK NUMBER -->
+
+<!-- MODAL POPUP SHOW IMG -->
+<div class="modal fade" id="ModalPopupImg" role="dialog" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content pt-5 pr-5 pb-5 pl-5" style="border-radius: 1rem;">
+      <img src="{{ imgUrl }}" class="img-fluid border-radius-10">
+      <div class="mt-4">
+        <div class="form-group col-12 col-sm-9 col-lg-7 text-center" style="margin: 0 auto;">
+          <button id="Confirm-Singup-btn" type="button" class="btn btn-primary"
+            style="border: none; border-radius: 1.5rem; width: 100%; background-color: #FE5721;"
+            data-dismiss="modal">ตกลง</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- ENG MODAL POPUP SHOW IMG -->
